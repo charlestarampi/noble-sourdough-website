@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{page_title}}</title>
+  <meta property="og:title" content="{{page_title}}">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://noblesourdough.com/{{id}}">
+  <!-- build:head -->
+  <!-- /build:head -->
+</head>
+<body style="--loaf: {{color_loaf}}; --ingredient-columns: {{ingredient_columns}}">
+  <!-- build:header sourdough -->
+  <!-- /build:header -->
+
+  <main class="section wrap" style="padding-top: 16px">
+    <div class="loaf-top">
+      <a class="circle-btn" href="/sourdough" aria-label="Back to the Sourdough range"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+    </div>
+    <div class="loaf" style="margin-top: 28px">
+      <img class="loaf-photo" src="/assets/img/loaves/{{id}}.webp" alt="{{page_title}} in its Noble Sourdough bag, beside a whole baked loaf" width="456" height="456">
+      <div>
+        <h1>{{heading}}</h1>
+        <p class="loaf-desc">{{description}}</p>
+        <div class="loaf-facts">
+          <div class="ingredients">
+            <h2>INGREDIENTS</h2>
+            <ul>
+{{ingredients}}
+            </ul>
+          </div>
+          <div>
+            <h2>ALLERGENS</h2>
+            <ul class="tags">{{allergens}}</ul>
+          </div>
+          <div>
+            <h2>SPECS</h2>
+            <ul>
+{{specs}}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img class="loaf-panel-image" src="/assets/img/loaves/{{id}}-panel.webp" alt="Nutrition facts table for {{page_title}}" width="600" height="190">
+  </main>
+</body>
+</html>

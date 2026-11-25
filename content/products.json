@@ -1,0 +1,93 @@
+{
+  "_about": "The Sourdough Range, copied word for word from noblesourdough.com (Canva) on 2026-11-25. Order here is the order on /sourdough. Text is kept exactly as live, including known issues listed in README.md; change it only when the owner approves. 'canva_media' records which live file each photo came from, for Phase 2.",
+  "range": {
+    "heading": "The SOURDOUGH Range",
+    "intro": "Plus seasonal LTOs - Cinnamon, Zaatar, Baklava etc. Consistent whole loaf size designed for daily repeat purchase and freshness..."
+  },
+  "allergen_icons": {
+    "Gluten": "_assets/media/c7e618f83351eedc83428f774bd8964f.png",
+    "Sesame": "_assets/media/baab4abf09a24774d935bf692b9ab808.png"
+  },
+  "products": [
+    {
+      "id": "classic-loaf",
+      "page_title": "Classic Loaf",
+      "heading": "CLASSIC LOAF",
+      "card_name": "CLASSIC",
+      "description": "Soft, light white sourdough loaf bread, evenly sliced with a tender crumb and mild flavor.",
+      "ingredients": ["White Wheat Flour", "Purified Water", "Water", "Salt", "Yeast", "Rye Flour"],
+      "allergens": ["Gluten"],
+      "specs": ["Net Weight: 450G", "Product Dimension: 12 x 12cm"],
+      "colors": { "page": "#002e89", "button": "#0051e9", "panel_text": "#093fa4", "card": "#2355bb" },
+      "canva_media": {
+        "photo": "_assets/media/05d9b5ff72d79eda62cdf2c8dd3f96d7.jpg",
+        "panel_image": "_assets/media/b927d7231e4298aa19e9e624e7ee16b4.png",
+        "card_photo": "_assets/media/c06c6bb30e25ea48917261e3a87c8520.png"
+      }
+    },
+    {
+      "id": "mediterranean-loaf",
+      "page_title": "Mediterranean Loaf",
+      "heading": "MEDITERRANEAN LOAF",
+      "card_name": "MEDITERRANEAN",
+      "description": "A hearty sourdough loaf with sundried tomatos and mediterranean herbs.",
+      "ingredients": ["Flour", "Water", "Salt", "Yeast", "Starter", "Sun dried tomato", "Green Olives", "Oregano"],
+      "allergens": ["Gluten"],
+      "specs": ["Net Weight: 450G", "Product Dimension: 12 x 12cm"],
+      "colors": { "page": "#5e8647", "button": "#71a453", "panel_text": "#5e8647", "card": "#71a453" },
+      "canva_media": {
+        "photo": "_assets/media/22d15ed7fdfe8d20ce90d2d39bccbb80.jpg",
+        "panel_image": "_assets/media/cbb7da35590d670b8f225ccae7f02ec8.png",
+        "card_photo": "_assets/media/8d61e37aa0c858f86631cf26c397d417.png"
+      }
+    },
+    {
+      "id": "multigrain-loaf",
+      "page_title": "Multigrain Loaf",
+      "heading": "MULTISEED LOAF",
+      "card_name": "MULTIGRAIN",
+      "description": "A soft, nutritious loaf loaded with crunchy seeds, offering a delicious balance of texture and flavor.",
+      "ingredients": ["White Wheat Flour", "Purified Water", "Barley Malt Flour", "White Wheat Flour", "Water", "Pumpkin Seeds", "Flaxseeds", "Sunflower Seeds", "Oats", "Black Sesame Seed", "Malt Syrup", "Salt", "Yeast", "Honey", "Rye Flour"],
+      "allergens": ["Gluten", "Sesame"],
+      "specs": ["Net Weight: 450G", "Product Dimension: 12 x 12cm"],
+      "colors": { "page": "#8644be", "button": "#af52fe", "panel_text": "#8644be", "card": "#8644be" },
+      "canva_media": {
+        "photo": "_assets/media/7b1330d7b1689b3964d3750d51e461a4.jpg",
+        "panel_image": "_assets/media/f74d1f92b09fd1cf65d38ea38cc18901.png",
+        "card_photo": "_assets/media/a5ad4fa4be7272b5d7ca144d65a47ea4.png"
+      }
+    },
+    {
+      "id": "whole-wheat-loaf",
+      "page_title": "Whole Wheat Loaf",
+      "heading": "WHOLE WHEAT",
+      "card_name": "WHOLE WHEAT",
+      "description": "Rustic and flavorful, with a chewy crust and soft, tangy crumb, naturally fermented to perfection.",
+      "ingredients": ["Flour", "Rye Flour", "Water", "Salt", "Yeast", "Malt", "Starter"],
+      "allergens": ["Gluten"],
+      "specs": ["Net Weight: 450G", "Product Dimension: 12 x 12cm"],
+      "colors": { "page": "#5e1527", "button": "#971535", "panel_text": "#5e1527", "card": "#682636" },
+      "canva_media": {
+        "photo": "_assets/media/e9625c53ca5ac7c0dec4b91eb4f7986e.jpg",
+        "panel_image": "_assets/media/51f4aad23ebd8a91ccd6f99374da7f0d.png",
+        "card_photo": "_assets/media/9096419d8c4d2fb1b1e5ebdd63399d08.png"
+      }
+    },
+    {
+      "id": "country-bread",
+      "page_title": "Country Bread",
+      "heading": "COUNTRY BREAD",
+      "card_name": "COUNTRY",
+      "description": "Hearty and wholesome with a rich, slightly tangy taste, made with high-quality rye flour.",
+      "ingredients": ["Flour", "Rye Flour", "Water", "Salt", "Yeast", "Malt", "Starter"],
+      "allergens": ["Gluten"],
+      "specs": ["Net Weight: 450G", "Product Dimension: 12 x 12cm"],
+      "colors": { "page": "#cb2d2c", "button": "#ff1716", "panel_text": "#ca302e", "card": "#cb2d2c" },
+      "canva_media": {
+        "photo": "_assets/media/51fff83fad3e438d813b2954facf74bb.jpg",
+        "panel_image": "_assets/media/16836698c544727dce7e5f1712bd3806.png",
+        "card_photo": "_assets/media/99dd7832e97fda8c04d57f53c7ed4d13.png"
+      }
+    }
+  ]
+}

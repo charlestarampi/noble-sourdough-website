@@ -1,0 +1,8 @@
+.DS_Store
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+# Raw downloads from the live site (keep these outside the repo or here, unused)
+_live/
+.claude/
