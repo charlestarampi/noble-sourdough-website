@@ -6,3 +6,20 @@ __pycache__/
 # Raw downloads from the live site (keep these outside the repo or here, unused)
 _live/
 .claude/
+
+# Raw brand assets: kept on this Mac only, never committed.
+# The GitHub repo is public; these include a confidential brand guide,
+# licensed fonts and multi-GB originals. tools/media.py turns them into the
+# web-ready copies under public/assets/.
+design/
+database/
+/internal/
+content/catalogue/
+content/images/
+content/videos/
+content/logos/
+content/fonts/
+
+# Gotham is a licensed font: served locally for preview, not committed until
+# a web licence is confirmed (see README "Fonts").
+public/assets/fonts/gotham/

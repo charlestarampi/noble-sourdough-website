@@ -8,113 +8,156 @@
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://noblesourdough.com/sourdough">
   <!-- build:head -->
+  <meta name="theme-color" content="#fcf5e6">
   <link rel="icon" href="/assets/img/favicon.png">
   <link rel="icon" href="/assets/img/icon-192.png" sizes="192x192">
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Roboto+Mono:wght@400;500&amp;display=swap">
+  <link rel="preload" href="/assets/fonts/aboreto/Aboreto-Regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
   <script src="/assets/js/site.js" defer></script>
   <!-- /build:head -->
 </head>
 <body>
   <!-- build:header sourdough -->
-  <header class="site-header" data-theme="light">
-    <a class="brand" href="/"><img src="/assets/img/logo.webp" alt="Noble Sourdough, home" width="140" height="196"></a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span></button>
-    <nav class="site-nav" id="site-nav" aria-label="Main">
-      <a href="/">HOME</a>
-      <a href="/about">ABOUT</a>
-      <a href="/sourdough" aria-current="page">SOURDOUGH</a>
-      <span class="soon">CATERING <small>(COMING SOON)</small></span>
-      <a href="/honesty-counter">HONESTY COUNTER</a>
-      <a class="pill" href="/contact">CONTACT</a>
-    </nav>
+  <header class="site-header" data-header data-theme="light">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="Noble Sourdough, home">
+        <img class="brand-blue" src="/assets/img/brand/noble-sourdough-logo-horizontal-blue.webp" alt="" width="720" height="290">
+        <img class="brand-cream" src="/assets/img/brand/noble-sourdough-logo-horizontal-cream.webp" alt="" width="720" height="290">
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="visually-hidden">Menu</span><span class="menu-lines" aria-hidden="true"></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul>
+        <li style="--i: 0"><a class="nav-link" href="/">HOME</a></li>
+        <li style="--i: 1"><a class="nav-link" href="/catalogue">CATALOGUE</a></li>
+        <li style="--i: 2"><a class="nav-link" href="/sourdough" aria-current="page">SOURDOUGH</a></li>
+        <li style="--i: 3"><a class="nav-link" href="/about">ABOUT</a></li>
+        <li style="--i: 4"><a class="btn btn--pill nav-cta" href="/contact"><span>CONTACT</span></a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
   <!-- /build:header -->
 
-  <main class="section" style="padding-top: clamp(32px, 5vw, 72px)">
+  <main>
     <!-- build:range -->
-      <div class="wrap" data-slider>
-        <div class="slider-head">
-          <h1 class="display">The SOURDOUGH<br><span class="accent">Range</span></h1>
-          <p class="lead">Plus seasonal LTOs - Cinnamon, Zaatar, Baklava etc. Consistent whole loaf size designed for daily repeat purchase and freshness...</p>
-        </div>
-        <div class="slider-bar">
-          <p class="counter" aria-hidden="true"><span data-current>01</span><small>/05</small></p>
-          <div class="slider-arrows">
-            <button class="circle-btn" type="button" data-prev aria-label="Previous loaf"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-            <button class="circle-btn" type="button" data-next aria-label="Next loaf"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          </div>
-        </div>
-        <div class="slider-track" tabindex="0" aria-label="The Sourdough range">
-            <article class="loaf-card" style="--card: #2355bb">
-              <img src="/assets/img/loaves/classic-loaf-card.webp" alt="" width="323" height="220">
+      <header class="page-hero wrap">
+        <p class="eyebrow" data-reveal="fade">Net Weight: 450G</p>
+        <h1 class="display" data-split>The SOURDOUGH<br><span class="accent">Range</span></h1>
+        <p class="lead" data-reveal="fade">Plus seasonal LTOs - Cinnamon, Zaatar, Baklava etc. Consistent whole loaf size designed for daily repeat purchase and freshness...</p>
+      </header>
+      <div class="wrap range-list">
+          <article class="range-item" style="--loaf: #002e89">
+            <a class="range-media" href="/classic-loaf" tabindex="-1" aria-hidden="true" data-reveal="mask">
+              <img src="/assets/img/loaves/classic-loaf-card.webp" alt="" width="900" height="600" loading="lazy" style="view-transition-name: loaf-classic-loaf">
+            </a>
+            <div class="range-text">
+              <p class="range-index" aria-hidden="true">01 / 05</p>
               <p class="eyebrow">Net Weight: 450G</p>
-              <h2>Classic</h2>
-              <p>Soft, light white sourdough loaf bread, evenly sliced with a tender crumb and mild flavor.</p>
+              <h2 class="range-name" data-split>Classic</h2>
+              <p class="range-desc" data-reveal="fade">[ Soft, light white sourdough loaf bread, evenly sliced with a tender crumb and mild flavor. ]</p>
               <ul class="tags" aria-label="Allergens"><li class="tag"><img src="/assets/img/allergen-gluten.webp" alt="" height="14">Gluten</li></ul>
-              <a class="dot-link" href="/classic-loaf">VIEW PRODUCT</a>
-            </article>
-            <article class="loaf-card" style="--card: #71a453">
-              <img src="/assets/img/loaves/mediterranean-loaf-card.webp" alt="" width="323" height="220">
+              <a class="btn btn--line" href="/classic-loaf"><span>VIEW PRODUCT</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>
+            </div>
+          </article>
+          <article class="range-item" style="--loaf: #5e8647">
+            <a class="range-media" href="/mediterranean-loaf" tabindex="-1" aria-hidden="true" data-reveal="mask">
+              <img src="/assets/img/loaves/mediterranean-loaf-card.webp" alt="" width="900" height="600" loading="lazy" style="view-transition-name: loaf-mediterranean-loaf">
+            </a>
+            <div class="range-text">
+              <p class="range-index" aria-hidden="true">02 / 05</p>
               <p class="eyebrow">Net Weight: 450G</p>
-              <h2>Mediterranean</h2>
-              <p>A hearty sourdough loaf with sundried tomatos and mediterranean herbs.</p>
+              <h2 class="range-name" data-split>Mediterranean</h2>
+              <p class="range-desc" data-reveal="fade">[ A hearty sourdough loaf with sundried tomatos and mediterranean herbs. ]</p>
               <ul class="tags" aria-label="Allergens"><li class="tag"><img src="/assets/img/allergen-gluten.webp" alt="" height="14">Gluten</li></ul>
-              <a class="dot-link" href="/mediterranean-loaf">VIEW PRODUCT</a>
-            </article>
-            <article class="loaf-card" style="--card: #8644be">
-              <img src="/assets/img/loaves/multigrain-loaf-card.webp" alt="" width="323" height="220">
+              <a class="btn btn--line" href="/mediterranean-loaf"><span>VIEW PRODUCT</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>
+            </div>
+          </article>
+          <article class="range-item" style="--loaf: #8644be">
+            <a class="range-media" href="/multigrain-loaf" tabindex="-1" aria-hidden="true" data-reveal="mask">
+              <img src="/assets/img/loaves/multigrain-loaf-card.webp" alt="" width="900" height="600" loading="lazy" style="view-transition-name: loaf-multigrain-loaf">
+            </a>
+            <div class="range-text">
+              <p class="range-index" aria-hidden="true">03 / 05</p>
               <p class="eyebrow">Net Weight: 450G</p>
-              <h2>Multigrain</h2>
-              <p>A soft, nutritious loaf loaded with crunchy seeds, offering a delicious balance of texture and flavor.</p>
+              <h2 class="range-name" data-split>Multigrain</h2>
+              <p class="range-desc" data-reveal="fade">[ A soft, nutritious loaf loaded with crunchy seeds, offering a delicious balance of texture and flavor. ]</p>
               <ul class="tags" aria-label="Allergens"><li class="tag"><img src="/assets/img/allergen-gluten.webp" alt="" height="14">Gluten</li><li class="tag"><img src="/assets/img/allergen-sesame.webp" alt="" height="14">Sesame</li></ul>
-              <a class="dot-link" href="/multigrain-loaf">VIEW PRODUCT</a>
-            </article>
-            <article class="loaf-card" style="--card: #682636">
-              <img src="/assets/img/loaves/whole-wheat-loaf-card.webp" alt="" width="323" height="220">
+              <a class="btn btn--line" href="/multigrain-loaf"><span>VIEW PRODUCT</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>
+            </div>
+          </article>
+          <article class="range-item" style="--loaf: #5e1527">
+            <a class="range-media" href="/whole-wheat-loaf" tabindex="-1" aria-hidden="true" data-reveal="mask">
+              <img src="/assets/img/loaves/whole-wheat-loaf-card.webp" alt="" width="900" height="600" loading="lazy" style="view-transition-name: loaf-whole-wheat-loaf">
+            </a>
+            <div class="range-text">
+              <p class="range-index" aria-hidden="true">04 / 05</p>
               <p class="eyebrow">Net Weight: 450G</p>
-              <h2>Whole Wheat</h2>
-              <p>Rustic and flavorful, with a chewy crust and soft, tangy crumb, naturally fermented to perfection.</p>
+              <h2 class="range-name" data-split>Whole Wheat</h2>
+              <p class="range-desc" data-reveal="fade">[ Rustic and flavorful, with a chewy crust and soft, tangy crumb, naturally fermented to perfection. ]</p>
               <ul class="tags" aria-label="Allergens"><li class="tag"><img src="/assets/img/allergen-gluten.webp" alt="" height="14">Gluten</li></ul>
-              <a class="dot-link" href="/whole-wheat-loaf">VIEW PRODUCT</a>
-            </article>
-            <article class="loaf-card" style="--card: #cb2d2c">
-              <img src="/assets/img/loaves/country-bread-card.webp" alt="" width="323" height="220">
+              <a class="btn btn--line" href="/whole-wheat-loaf"><span>VIEW PRODUCT</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>
+            </div>
+          </article>
+          <article class="range-item" style="--loaf: #cb2d2c">
+            <a class="range-media" href="/country-bread" tabindex="-1" aria-hidden="true" data-reveal="mask">
+              <img src="/assets/img/loaves/country-bread-card.webp" alt="" width="900" height="600" loading="lazy" style="view-transition-name: loaf-country-bread">
+            </a>
+            <div class="range-text">
+              <p class="range-index" aria-hidden="true">05 / 05</p>
               <p class="eyebrow">Net Weight: 450G</p>
-              <h2>Country</h2>
-              <p>Hearty and wholesome with a rich, slightly tangy taste, made with high-quality rye flour.</p>
+              <h2 class="range-name" data-split>Country</h2>
+              <p class="range-desc" data-reveal="fade">[ Hearty and wholesome with a rich, slightly tangy taste, made with high-quality rye flour. ]</p>
               <ul class="tags" aria-label="Allergens"><li class="tag"><img src="/assets/img/allergen-gluten.webp" alt="" height="14">Gluten</li></ul>
-              <a class="dot-link" href="/country-bread">VIEW PRODUCT</a>
-            </article>
-        </div>
+              <a class="btn btn--line" href="/country-bread"><span>VIEW PRODUCT</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>
+            </div>
+          </article>
       </div>
     <!-- /build:range -->
+
+    <!-- build:marquee dark -->
+    <div class="marquee marquee--dark" data-marquee>
+      <p class="visually-hidden">Better Bread Everyday, Fermented 24 Hours, No Additives, No Preservatives, No Added Sugar, Proper Sourdough, Top Quality!, The Noble Way!</p>
+      <div class="marquee-track" aria-hidden="true">
+        <div class="marquee-run"><span>BETTER BREAD EVERYDAY</span><img src="/assets/img/brand/mark-cream.webp" alt="" width="40" height="40"><span>FERMENTED 24 HOURS</span><img src="/assets/img/brand/mark-cream.webp" alt="" width="40" height="40"><span>NO ADDITIVES, NO PRESERVATIVES</span><img src="/assets/img/brand/mark-cream.webp" alt="" width="40" height="40"><span>NO ADDED SUGAR</span><img src="/assets/img/brand/mark-cream.webp" alt="" width="40" height="40"><span>PROPER SOURDOUGH</span><img src="/assets/img/brand/mark-cream.webp" alt="" width="40" height="40"><span>TOP QUALITY!</span><img src="/assets/img/brand/mark-cream.webp" alt="" width="40" height="40"><span>THE NOBLE WAY!</span><img src="/assets/img/brand/mark-cream.webp" alt="" width="40" height="40"></div>
+        <div class="marquee-run"><span>BETTER BREAD EVERYDAY</span><img src="/assets/img/brand/mark-cream.webp" alt="" width="40" height="40"><span>FERMENTED 24 HOURS</span><img src="/assets/img/brand/mark-cream.webp" alt="" width="40" height="40"><span>NO ADDITIVES, NO PRESERVATIVES</span><img src="/assets/img/brand/mark-cream.webp" alt="" width="40" height="40"><span>NO ADDED SUGAR</span><img src="/assets/img/brand/mark-cream.webp" alt="" width="40" height="40"><span>PROPER SOURDOUGH</span><img src="/assets/img/brand/mark-cream.webp" alt="" width="40" height="40"><span>TOP QUALITY!</span><img src="/assets/img/brand/mark-cream.webp" alt="" width="40" height="40"><span>THE NOBLE WAY!</span><img src="/assets/img/brand/mark-cream.webp" alt="" width="40" height="40"></div>
+      </div>
+    </div>
+    <!-- /build:marquee -->
   </main>
 
   <!-- build:footer -->
   <footer class="site-footer">
     <div class="wrap">
-      <div class="footer-grid">
-        <a class="brand" href="/"><img src="/assets/img/logo.webp" alt="Noble Sourdough, home" width="140" height="196"></a>
-        <div>
+      <div class="footer-top">
+        <a class="footer-brand" href="/" aria-label="Noble Sourdough, home"><img src="/assets/img/brand/noble-sourdough-logo-stacked-cream.webp" alt="" width="420" height="720" loading="lazy"></a>
+        <div class="footer-col">
           <h2>Contact</h2>
           <address><strong>+971 52 923 1755<br>G05, Al Rawdha, Warsan First, Al Warsan First</strong><br>Dubai, United Arab Emirates<br>PO Box 2334 (Dubai)</address>
         </div>
-        <div>
+        <div class="footer-col">
           <h2>Social Media</h2>
-          <ul class="social">
-            <li><a href="http://www.instagram.com/noblesourdough.ae"><img src="/assets/img/icon-instagram.webp" alt="Instagram" width="22" height="22"></a> Instagram</li>
-            <li><a href="https://www.linkedin.com/in/matthew-firth-4595501a7/"><img src="/assets/img/icon-linkedin.webp" alt="LinkedIn" width="26" height="22"></a> LinkedIn</li>
+          <ul class="footer-social">
+            <li><a href="http://www.instagram.com/noblesourdough.ae" aria-label="Instagram"><img src="/assets/img/icon-instagram.webp" alt="" width="22" height="22"></a> Instagram</li>
+            <li><a href="https://www.linkedin.com/in/matthew-firth-4595501a7/" aria-label="LinkedIn"><img src="/assets/img/icon-linkedin.webp" alt="" width="26" height="22"></a> LinkedIn</li>
           </ul>
         </div>
-        <div>
-          <p class="legal">Privacy Policy | Terms &amp; Conditions</p>
-        </div>
+        <nav class="footer-col" aria-label="Footer">
+          <ul class="footer-links">
+            <li><a href="/catalogue">CATALOGUE</a></li>
+            <li><a href="/sourdough">SOURDOUGH</a></li>
+            <li><a href="/about">ABOUT</a></li>
+            <li><a href="/contact">CONTACT</a></li>
+          </ul>
+        </nav>
       </div>
-      <p class="footer-bottom"><img src="/assets/img/icon-copyright.webp" alt="©" width="15" height="15"> 2026 NOBLE BAKERY FZE. All rights reserved.</p>
+      <p class="footer-word" aria-hidden="true" data-reveal="rise">Better Bread Everyday</p>
+      <div class="footer-bottom">
+        <p class="legal">Privacy Policy | Terms &amp; Conditions</p>
+        <p class="copyright"><img src="/assets/img/icon-copyright.webp" alt="©" width="14" height="14"> 2026 NOBLE BAKERY FZE. All rights reserved.</p>
+      </div>
     </div>
   </footer>
   <!-- /build:footer -->

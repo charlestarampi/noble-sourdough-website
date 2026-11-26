@@ -14,16 +14,19 @@
   <!-- build:header sourdough -->
   <!-- /build:header -->
 
-  <main class="section wrap" style="padding-top: 16px">
+  <main class="loaf-page wrap">
     <div class="loaf-top">
-      <a class="circle-btn" href="/sourdough" aria-label="Back to the Sourdough range"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+      <a class="circle-btn" href="/sourdough" aria-label="Back to the Sourdough range"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>
+      <ul class="loaf-summary" aria-hidden="true"><li>Sourdough</li>{{spec_lines}}<li>{{allergen_list}}</li></ul>
     </div>
-    <div class="loaf" style="margin-top: 28px">
-      <img class="loaf-photo" src="/assets/img/loaves/{{id}}.webp" alt="{{page_title}} in its Noble Sourdough bag, beside a whole baked loaf" width="456" height="456">
-      <div>
-        <h1>{{heading}}</h1>
-        <p class="loaf-desc">{{description}}</p>
-        <div class="loaf-facts">
+    <div class="loaf-hero">
+      <div class="loaf-photo-frame" data-reveal="mask">
+        <img class="loaf-photo" src="/assets/img/loaves/{{id}}.webp" alt="{{page_title}} in its Noble Sourdough bag, beside a whole baked loaf" width="1200" height="1200" style="view-transition-name: loaf-{{id}}">
+      </div>
+      <div class="loaf-info">
+        <h1 data-split>{{heading}}</h1>
+        <p class="loaf-desc" data-reveal="fade">{{description}}</p>
+        <div class="facts" data-reveal="fade" style="--i: 2">
           <div class="ingredients">
             <h2>INGREDIENTS</h2>
             <ul>
@@ -43,7 +46,20 @@
         </div>
       </div>
     </div>
-    <img class="loaf-panel-image" src="/assets/img/loaves/{{id}}-panel.webp" alt="Nutrition facts table for {{page_title}}" width="600" height="190">
+
+    <figure class="nutrition" data-reveal="fade">
+      <img src="/assets/img/loaves/{{id}}-panel.webp" alt="Nutrition facts table for {{page_title}}" width="1400" height="445" loading="lazy">
+    </figure>
+
+    <section class="more" aria-label="The Sourdough range">
+      <a class="link-arrow" href="/sourdough"><span>The SOURDOUGH Range</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>
+      <div class="more-grid">
+{{more}}
+      </div>
+    </section>
   </main>
+
+  <!-- build:footer -->
+  <!-- /build:footer -->
 </body>
 </html>

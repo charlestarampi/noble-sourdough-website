@@ -17,7 +17,7 @@
       "description": "Soft, light white sourdough loaf bread, evenly sliced with a tender crumb and mild flavor.",
       "ingredients": ["White Wheat Flour", "Purified Water", "Water", "Salt", "Yeast", "Rye Flour"],
       "allergens": ["Gluten"],
-      "specs": ["Net Weight: 450G", "Product Dimension: 12 x 12cm"],
+      "specs": ["Net Weight: 450G", "Product Dimension: 16 × 12 × 12 cm"],
       "colors": { "page": "#002e89", "button": "#0051e9", "panel_text": "#093fa4", "card": "#2355bb" },
       "canva_media": {
         "photo": "_assets/media/05d9b5ff72d79eda62cdf2c8dd3f96d7.jpg",
@@ -33,7 +33,7 @@
       "description": "A hearty sourdough loaf with sundried tomatos and mediterranean herbs.",
       "ingredients": ["Flour", "Water", "Salt", "Yeast", "Starter", "Sun dried tomato", "Green Olives", "Oregano"],
       "allergens": ["Gluten"],
-      "specs": ["Net Weight: 450G", "Product Dimension: 12 x 12cm"],
+      "specs": ["Net Weight: 450G", "Product Dimension: 16 × 12 × 12 cm"],
       "colors": { "page": "#5e8647", "button": "#71a453", "panel_text": "#5e8647", "card": "#71a453" },
       "canva_media": {
         "photo": "_assets/media/22d15ed7fdfe8d20ce90d2d39bccbb80.jpg",
@@ -49,7 +49,7 @@
       "description": "A soft, nutritious loaf loaded with crunchy seeds, offering a delicious balance of texture and flavor.",
       "ingredients": ["White Wheat Flour", "Purified Water", "Barley Malt Flour", "White Wheat Flour", "Water", "Pumpkin Seeds", "Flaxseeds", "Sunflower Seeds", "Oats", "Black Sesame Seed", "Malt Syrup", "Salt", "Yeast", "Honey", "Rye Flour"],
       "allergens": ["Gluten", "Sesame"],
-      "specs": ["Net Weight: 450G", "Product Dimension: 12 x 12cm"],
+      "specs": ["Net Weight: 450G", "Product Dimension: 16 × 12 × 12 cm"],
       "colors": { "page": "#8644be", "button": "#af52fe", "panel_text": "#8644be", "card": "#8644be" },
       "canva_media": {
         "photo": "_assets/media/7b1330d7b1689b3964d3750d51e461a4.jpg",
@@ -65,7 +65,7 @@
       "description": "Rustic and flavorful, with a chewy crust and soft, tangy crumb, naturally fermented to perfection.",
       "ingredients": ["Flour", "Rye Flour", "Water", "Salt", "Yeast", "Malt", "Starter"],
       "allergens": ["Gluten"],
-      "specs": ["Net Weight: 450G", "Product Dimension: 12 x 12cm"],
+      "specs": ["Net Weight: 450G", "Product Dimension: 16 × 12 × 12 cm"],
       "colors": { "page": "#5e1527", "button": "#971535", "panel_text": "#5e1527", "card": "#682636" },
       "canva_media": {
         "photo": "_assets/media/e9625c53ca5ac7c0dec4b91eb4f7986e.jpg",
@@ -81,7 +81,7 @@
       "description": "Hearty and wholesome with a rich, slightly tangy taste, made with high-quality rye flour.",
       "ingredients": ["Flour", "Rye Flour", "Water", "Salt", "Yeast", "Malt", "Starter"],
       "allergens": ["Gluten"],
-      "specs": ["Net Weight: 450G", "Product Dimension: 12 x 12cm"],
+      "specs": ["Net Weight: 450G", "Product Dimension: 16 × 12 × 12 cm"],
       "colors": { "page": "#cb2d2c", "button": "#ff1716", "panel_text": "#ca302e", "card": "#cb2d2c" },
       "canva_media": {
         "photo": "_assets/media/51fff83fad3e438d813b2954facf74bb.jpg",

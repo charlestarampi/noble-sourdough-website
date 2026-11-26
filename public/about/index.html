@@ -8,110 +8,136 @@
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://noblesourdough.com/about">
   <!-- build:head -->
+  <meta name="theme-color" content="#fcf5e6">
   <link rel="icon" href="/assets/img/favicon.png">
   <link rel="icon" href="/assets/img/icon-192.png" sizes="192x192">
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" sizes="180x180">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Roboto+Mono:wght@400;500&amp;display=swap">
+  <link rel="preload" href="/assets/fonts/aboreto/Aboreto-Regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
   <script src="/assets/js/site.js" defer></script>
   <!-- /build:head -->
 </head>
 <body>
   <!-- build:header about -->
-  <header class="site-header" data-theme="light">
-    <a class="brand" href="/"><img src="/assets/img/logo.webp" alt="Noble Sourdough, home" width="140" height="196"></a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span></button>
-    <nav class="site-nav" id="site-nav" aria-label="Main">
-      <a href="/">HOME</a>
-      <a href="/about" aria-current="page">ABOUT</a>
-      <a href="/sourdough">SOURDOUGH</a>
-      <span class="soon">CATERING <small>(COMING SOON)</small></span>
-      <a href="/honesty-counter">HONESTY COUNTER</a>
-      <a class="pill" href="/contact">CONTACT</a>
-    </nav>
+  <header class="site-header" data-header data-theme="light">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="Noble Sourdough, home">
+        <img class="brand-blue" src="/assets/img/brand/noble-sourdough-logo-horizontal-blue.webp" alt="" width="720" height="290">
+        <img class="brand-cream" src="/assets/img/brand/noble-sourdough-logo-horizontal-cream.webp" alt="" width="720" height="290">
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="visually-hidden">Menu</span><span class="menu-lines" aria-hidden="true"></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul>
+        <li style="--i: 0"><a class="nav-link" href="/">HOME</a></li>
+        <li style="--i: 1"><a class="nav-link" href="/catalogue">CATALOGUE</a></li>
+        <li style="--i: 2"><a class="nav-link" href="/sourdough">SOURDOUGH</a></li>
+        <li style="--i: 3"><a class="nav-link" href="/about" aria-current="page">ABOUT</a></li>
+        <li style="--i: 4"><a class="btn btn--pill nav-cta" href="/contact"><span>CONTACT</span></a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
   <!-- /build:header -->
 
   <main>
-    <section class="section wrap about-hero" style="padding-top: clamp(32px, 5vw, 72px)">
-      <div class="split">
+    <section class="page-hero wrap about-hero">
+      <div class="about-hero-grid">
         <div>
-          <h1 class="display">Better bread<br><span class="accent">everyday</span></h1>
-          <p class="lead" style="margin-top: 28px">Every bread is shaped by time, care, and skilled hands. No shortcuts, no compromises. At Noble Bakery, we honor the craft of baking with patience, integrity, and honest flavor, grounded in tradition while embracing the future.</p>
+          <p class="eyebrow" data-reveal="fade">ABOUT</p>
+          <h1 class="display" data-split>Better bread <span class="accent">everyday</span></h1>
+          <p class="lead" data-reveal="fade" style="--i: 3">Every bread is shaped by time, care, and skilled hands. No shortcuts, no compromises. At Noble Bakery, we honor the craft of baking with patience, integrity, and honest flavor, grounded in tradition while embracing the future.</p>
           <!-- Live site: WhatsApp link has no 971 country code. Kept as live; see README. -->
-          <div class="actions">
-            <a class="pill" href="https://wa.me/529231755">TALK TO MATTHEW?</a>
-            <a class="whatsapp" href="https://wa.me/529231755"><img src="/assets/img/icon-whatsapp.webp" alt="WhatsApp" width="44" height="44"></a>
+          <div class="actions" data-reveal="fade" style="--i: 5">
+            <a class="btn btn--solid" href="https://wa.me/529231755"><span>TALK TO MATTHEW?</span></a>
+            <a class="whatsapp" href="https://wa.me/529231755"><img src="/assets/img/icon-whatsapp.webp" alt="WhatsApp" width="26" height="26"></a>
           </div>
         </div>
-        <video src="/assets/video/about.mp4" aria-label="Video from the Noble bakery" autoplay muted loop playsinline width="381" height="535"></video>
+        <div data-reveal="mask">
+          <video src="/assets/video/about.mp4" aria-label="Video from the Noble bakery" autoplay muted loop playsinline width="720" height="1280"></video>
+        </div>
       </div>
-      <img class="media-round wide-image" src="/assets/img/home-strip-1.webp" alt="Sourdough loaf cut in half, showing an open, airy crumb" width="672" height="320" style="margin-top: clamp(40px, 6vw, 80px)">
     </section>
 
-    <section class="panel on-dark why section">
-      <img class="panel-bg" src="/assets/img/about-why-bg.webp" alt="" width="1366" height="673">
+    <!-- build:marquee -->
+    <div class="marquee" data-marquee>
+      <p class="visually-hidden">Better Bread Everyday, Fermented 24 Hours, No Additives, No Preservatives, No Added Sugar, Proper Sourdough, Top Quality!, The Noble Way!</p>
+      <div class="marquee-track" aria-hidden="true">
+        <div class="marquee-run"><span>BETTER BREAD EVERYDAY</span><img src="/assets/img/brand/mark-blue.webp" alt="" width="40" height="40"><span>FERMENTED 24 HOURS</span><img src="/assets/img/brand/mark-blue.webp" alt="" width="40" height="40"><span>NO ADDITIVES, NO PRESERVATIVES</span><img src="/assets/img/brand/mark-blue.webp" alt="" width="40" height="40"><span>NO ADDED SUGAR</span><img src="/assets/img/brand/mark-blue.webp" alt="" width="40" height="40"><span>PROPER SOURDOUGH</span><img src="/assets/img/brand/mark-blue.webp" alt="" width="40" height="40"><span>TOP QUALITY!</span><img src="/assets/img/brand/mark-blue.webp" alt="" width="40" height="40"><span>THE NOBLE WAY!</span><img src="/assets/img/brand/mark-blue.webp" alt="" width="40" height="40"></div>
+        <div class="marquee-run"><span>BETTER BREAD EVERYDAY</span><img src="/assets/img/brand/mark-blue.webp" alt="" width="40" height="40"><span>FERMENTED 24 HOURS</span><img src="/assets/img/brand/mark-blue.webp" alt="" width="40" height="40"><span>NO ADDITIVES, NO PRESERVATIVES</span><img src="/assets/img/brand/mark-blue.webp" alt="" width="40" height="40"><span>NO ADDED SUGAR</span><img src="/assets/img/brand/mark-blue.webp" alt="" width="40" height="40"><span>PROPER SOURDOUGH</span><img src="/assets/img/brand/mark-blue.webp" alt="" width="40" height="40"><span>TOP QUALITY!</span><img src="/assets/img/brand/mark-blue.webp" alt="" width="40" height="40"><span>THE NOBLE WAY!</span><img src="/assets/img/brand/mark-blue.webp" alt="" width="40" height="40"></div>
+      </div>
+    </div>
+    <!-- /build:marquee -->
+
+    <section class="section">
+      <div class="wide-media" data-reveal="mask">
+        <img src="/assets/img/home-strip-1.webp" alt="Sourdough loaf cut in half, showing an open, airy crumb" width="1000" height="667" loading="lazy" data-parallax="0.08">
+      </div>
+    </section>
+
+    <section class="panel panel--navy pattern on-dark section" aria-labelledby="why-title">
       <div class="wrap">
-        <div class="head">
-          <h2 class="title">Why Noble<br><span class="accent">Sourdough?</span></h2>
-        </div>
-        <dl>
-          <div><dt>Fermented</dt><dd>Naturally fermented, improving flavor and digestibility.</dd></div>
-          <div><dt>Lower GI</dt><dd>Releases sugar more slowly, helping maintain stable blood sugar levels.</dd></div>
-          <div><dt>Less Inflammatory ATI’s</dt><dd>Fermentation helps break down certain wheat proteins that may cause irritation.</dd></div>
-          <div><dt>Easier to Digest</dt><dd>Long fermentation breaks down gluten and starches, making it gentler on the stomach.</dd></div>
-          <div><dt>More Nutrients</dt><dd>Fermentation improves the body’s ability to absorb important minerals.</dd></div>
-          <div><dt>Less Processed</dt><dd>Made using traditional baking methods without industrial shortcuts.</dd></div>
-          <div><dt>Minimal Ingredients</dt><dd>Typically made with just flour, water, salt, and natural starter.</dd></div>
+        <p class="eyebrow" data-reveal="fade">SOURDOUGH</p>
+        <h2 class="title" id="why-title" data-split style="margin-top: 20px">Why Noble <span class="accent">Sourdough?</span></h2>
+        <dl class="why-list">
+          <div data-reveal="card" style="--i: 0"><dt>Fermented</dt><dd>Naturally fermented, improving flavor and digestibility.</dd></div>
+          <div data-reveal="card" style="--i: 1"><dt>Lower GI</dt><dd>Releases sugar more slowly, helping maintain stable blood sugar levels.</dd></div>
+          <div data-reveal="card" style="--i: 2"><dt>Less Inflammatory ATI’s</dt><dd>Fermentation helps break down certain wheat proteins that may cause irritation.</dd></div>
+          <div data-reveal="card" style="--i: 0"><dt>Easier to Digest</dt><dd>Long fermentation breaks down gluten and starches, making it gentler on the stomach.</dd></div>
+          <div data-reveal="card" style="--i: 1"><dt>More Nutrients</dt><dd>Fermentation improves the body’s ability to absorb important minerals.</dd></div>
+          <div data-reveal="card" style="--i: 2"><dt>Less Processed</dt><dd>Made using traditional baking methods without industrial shortcuts.</dd></div>
+          <div data-reveal="card" style="--i: 0"><dt>Minimal Ingredients</dt><dd>Typically made with just flour, water, salt, and natural starter.</dd></div>
         </dl>
       </div>
     </section>
 
-    <section class="section wrap" aria-label="Gallery">
-      <div class="gallery">
-        <img src="/assets/img/about-grid-1.webp" alt="The Noble way!" width="218" height="218">
-        <img src="/assets/img/about-grid-2.webp" alt="No additives, no preservatives" width="218" height="218">
-        <img src="/assets/img/about-grid-3.webp" alt="Top quality!" width="218" height="218">
-        <img src="/assets/img/about-grid-4.webp" alt="Proper sourdough" width="218" height="218">
-        <img src="/assets/img/about-grid-5.webp" alt="No added sugar" width="218" height="218">
-        <img src="/assets/img/about-grid-6.webp" alt="Fermented 24 hours" width="218" height="218">
+    <section class="section wrap" aria-label="Our promises">
+      <div class="badges">
+        <img src="/assets/img/about-grid-1.webp" alt="The Noble way!" width="500" height="500" loading="lazy" data-reveal="card" style="--i: 0">
+        <img src="/assets/img/about-grid-2.webp" alt="No additives, no preservatives" width="500" height="500" loading="lazy" data-reveal="card" style="--i: 1">
+        <img src="/assets/img/about-grid-3.webp" alt="Top quality!" width="500" height="500" loading="lazy" data-reveal="card" style="--i: 2">
+        <img src="/assets/img/about-grid-4.webp" alt="Proper sourdough" width="500" height="500" loading="lazy" data-reveal="card" style="--i: 0">
+        <img src="/assets/img/about-grid-5.webp" alt="No added sugar" width="500" height="500" loading="lazy" data-reveal="card" style="--i: 1">
+        <img src="/assets/img/about-grid-6.webp" alt="Fermented 24 hours" width="500" height="500" loading="lazy" data-reveal="card" style="--i: 2">
       </div>
     </section>
 
-    <section class="wrap statement">
-      <div class="split">
-        <div>
-          <p class="eyebrow">A HOMEGROWN BAKERY</p>
-          <h2 class="statement-text">Every sourdough  loaf is <span class="accent">hand-shaped, mixed by hand, packed with intention.</span></h2>
-        </div>
-        <img class="media-round" src="/assets/img/about-hand-shaped.webp" alt="Baker loading trays of hand-shaped dough onto a proofing rack" width="303" height="256">
+    <section class="wrap split" aria-label="A homegrown bakery">
+      <div>
+        <p class="eyebrow" data-reveal="fade">A HOMEGROWN BAKERY</p>
+        <h2 class="statement" data-scrub style="margin-top: 26px">Every sourdough  loaf is hand-shaped, mixed by hand, packed with intention.</h2>
+      </div>
+      <div data-reveal="mask" style="border-radius: var(--radius); overflow: hidden">
+        <img class="media-round" src="/assets/img/about-hand-shaped.webp" alt="Baker loading trays of hand-shaped dough onto a proofing rack" width="900" height="1125" loading="lazy">
       </div>
     </section>
 
     <section class="section wrap">
       <div class="duo">
         <div>
-          <p class="lead">We believe the best bread is born from patience. Each sourdough loaf undergoes a long, natural fermentation, allowing the flavor to fully develop.</p>
-          <img src="/assets/img/about-patience.webp" alt="Close-up of bubbly, fermenting sourdough" width="383" height="304">
+          <figure data-reveal="mask"><img src="/assets/img/about-patience.webp" alt="Close-up of bubbly, fermenting sourdough" width="576" height="768" loading="lazy" data-parallax="0.05"></figure>
+          <p class="lead" data-reveal="fade">We believe the best bread is born from patience. Each sourdough loaf undergoes a long, natural fermentation, allowing the flavor to fully develop.</p>
         </div>
         <div>
-          <p class="lead">No instant mixes, no shortcuts—just the finest ingredients, skilled hands, and time giving character to every bite.</p>
-          <img src="/assets/img/about-no-shortcuts.webp" alt="Freshly baked sourdough loaves cooling on bakery racks" width="383" height="304">
+          <figure data-reveal="mask"><img src="/assets/img/about-no-shortcuts.webp" alt="Freshly baked sourdough loaves cooling on bakery racks" width="900" height="1350" loading="lazy" data-parallax="0.05"></figure>
+          <p class="lead" data-reveal="fade">No instant mixes, no shortcuts—just the finest ingredients, skilled hands, and time giving character to every bite.</p>
         </div>
       </div>
     </section>
 
-    <section class="wrap cards-2">
-      <article class="soon-card">
+    <section class="wrap" aria-label="The bakery">
+      <div class="mosaic">
+        <figure class="m1" data-reveal="mask"><img src="/assets/img/bakery/img-005.webp" srcset="/assets/img/bakery/img-005-sm.webp 800w, /assets/img/bakery/img-005.webp 1600w" sizes="(max-width: 760px) 100vw, 42vw" alt="A Noble baker behind a row of freshly baked loaves under a Freshly Baked Loaves sign" width="1600" height="2000" loading="lazy"></figure>
+        <figure class="m2" data-reveal="mask"><img src="/assets/img/bakery/img-002.webp" srcset="/assets/img/bakery/img-002-sm.webp 800w, /assets/img/bakery/img-002.webp 1600w" sizes="(max-width: 760px) 58vw, 33vw" alt="Shelves of sourdough loaves" width="1600" height="2000" loading="lazy"></figure>
+        <figure class="m3" data-reveal="mask"><img src="/assets/img/bakery/img-004.webp" srcset="/assets/img/bakery/img-004-sm.webp 800w, /assets/img/bakery/img-004.webp 1600w" sizes="(max-width: 760px) 42vw, 25vw" alt="Golden bread rolls on a baking tray" width="1600" height="2400" loading="lazy"></figure>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <article class="soon-card" data-reveal="card" style="--i: 0">
         <p class="eyebrow">OUR RECIPE</p>
         <h2 class="title">We offer catering services</h2>
-        <p class="tag">COMING SOON!</p>
-      </article>
-      <article class="soon-card">
-        <p class="eyebrow">OUR STORE</p>
-        <h2 class="title">We have honesty counter</h2>
         <p class="tag">COMING SOON!</p>
       </article>
     </section>
@@ -120,24 +146,33 @@
   <!-- build:footer -->
   <footer class="site-footer">
     <div class="wrap">
-      <div class="footer-grid">
-        <a class="brand" href="/"><img src="/assets/img/logo.webp" alt="Noble Sourdough, home" width="140" height="196"></a>
-        <div>
+      <div class="footer-top">
+        <a class="footer-brand" href="/" aria-label="Noble Sourdough, home"><img src="/assets/img/brand/noble-sourdough-logo-stacked-cream.webp" alt="" width="420" height="720" loading="lazy"></a>
+        <div class="footer-col">
           <h2>Contact</h2>
           <address><strong>+971 52 923 1755<br>G05, Al Rawdha, Warsan First, Al Warsan First</strong><br>Dubai, United Arab Emirates<br>PO Box 2334 (Dubai)</address>
         </div>
-        <div>
+        <div class="footer-col">
           <h2>Social Media</h2>
-          <ul class="social">
-            <li><a href="http://www.instagram.com/noblesourdough.ae"><img src="/assets/img/icon-instagram.webp" alt="Instagram" width="22" height="22"></a> Instagram</li>
-            <li><a href="https://www.linkedin.com/in/matthew-firth-4595501a7/"><img src="/assets/img/icon-linkedin.webp" alt="LinkedIn" width="26" height="22"></a> LinkedIn</li>
+          <ul class="footer-social">
+            <li><a href="http://www.instagram.com/noblesourdough.ae" aria-label="Instagram"><img src="/assets/img/icon-instagram.webp" alt="" width="22" height="22"></a> Instagram</li>
+            <li><a href="https://www.linkedin.com/in/matthew-firth-4595501a7/" aria-label="LinkedIn"><img src="/assets/img/icon-linkedin.webp" alt="" width="26" height="22"></a> LinkedIn</li>
           </ul>
         </div>
-        <div>
-          <p class="legal">Privacy Policy | Terms &amp; Conditions</p>
-        </div>
+        <nav class="footer-col" aria-label="Footer">
+          <ul class="footer-links">
+            <li><a href="/catalogue">CATALOGUE</a></li>
+            <li><a href="/sourdough">SOURDOUGH</a></li>
+            <li><a href="/about">ABOUT</a></li>
+            <li><a href="/contact">CONTACT</a></li>
+          </ul>
+        </nav>
       </div>
-      <p class="footer-bottom"><img src="/assets/img/icon-copyright.webp" alt="©" width="15" height="15"> 2026 NOBLE BAKERY FZE. All rights reserved.</p>
+      <p class="footer-word" aria-hidden="true" data-reveal="rise">Better Bread Everyday</p>
+      <div class="footer-bottom">
+        <p class="legal">Privacy Policy | Terms &amp; Conditions</p>
+        <p class="copyright"><img src="/assets/img/icon-copyright.webp" alt="©" width="14" height="14"> 2026 NOBLE BAKERY FZE. All rights reserved.</p>
+      </div>
     </div>
   </footer>
   <!-- /build:footer -->

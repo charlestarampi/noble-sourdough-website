@@ -1,0 +1,186 @@
+{
+  "_about": "The B2B catalogue, copied from 'database/26NOV26 Noble Sourdough B2B Catalogue.pdf' (2026-11-26). Order, names, codes, weights, sizes and allergens are as printed. 'photo' is the file in content/catalogue/ used for the product (tools/media.py turns it into public/assets/img/catalogue/<id>.webp); 'photo_note' marks a photo matched by a different name, to confirm. The PDF lists no prices.",
+  "title": "B2B CATALOGUE",
+  "intro": "Explore our latest offerings...",
+  "issues": [
+    "Signature Seasoned Baguette has the same code as Whole Wheat Baguette (SB12000036).",
+    "Pistachio Mario Bread's code has an extra digit (AB110000010).",
+    "Granary sliced bread: code SD82247645 and 1600g do not follow the other sliced breads (SD140000xx, 450g).",
+    "Saffron & Dates sourdough and the two Potato buns have no photo yet."
+  ],
+  "groups": [
+    {
+      "name": "Sourdough",
+      "tagline": "Loaves | Baguettes | Ciabattas | Sliced breads",
+      "categories": [
+        {
+          "id": "sourdough-loaf", "name": "Sourdough Loaf", "label": "Loaves",
+          "description": "Crafted with natural fermentation, giving them a crisp crust and a soft, tangy crumb.",
+          "products": [
+            {"name": "Country", "code": "SD11000013", "weight": "500g", "size": "13 x 26 x 10cm", "allergens": ["Gluten"], "photo": "Sourdough Breads/Country/Country 01.jpg"},
+            {"name": "Classic 500g", "description": "A classic naturally fermented sourdough loaf with a crisp crust and a soft, tangy crumb.", "code": "SD11000020", "weight": "500g", "size": "13 x 26 x 10cm", "allergens": ["Gluten"], "photo": "Sourdough Breads/Classic/Classic 01.jpg"},
+            {"name": "Multigrain", "code": "SD11000037", "weight": "500g", "size": "13 x 26 x 10cm", "allergens": ["Gluten", "Sesame", "Oats"], "photo": "Sourdough Breads/Multigrain/Multigrain 01.jpg"},
+            {"name": "Fruit & Walnut", "code": "SD11000044", "weight": "500g", "size": "13 x 26 x 10cm", "allergens": ["Gluten", "Nuts"], "photo": "Sourdough Breads/Fruit & Walnut/Fruit & Walnut 01.jpg"},
+            {"name": "Classic 1000g", "code": "SD11000051", "weight": "1000g", "size": "18 x 26 x 8cm", "allergens": ["Gluten"], "photo": "Sourdough Breads/Classic 1kg/Classic 1kg 01.jpg"},
+            {"name": "Saffron & Dates", "code": "SD11000068", "weight": "500g", "size": "13 x 26 x 10cm", "allergens": ["Gluten", "Sesame", "Oats"], "photo": null},
+            {"name": "Za’atar", "code": "SD11000075", "weight": "500g", "size": "13 x 26 x 10cm", "allergens": ["Gluten", "Sesame"], "photo": "Sourdough Breads/Za'atar/Za'atar 01.jpg"},
+            {"name": "Mediterranean", "code": "SD11000082", "weight": "500g", "size": "13 x 26 x 10cm", "allergens": ["Gluten"], "photo": "Sourdough Breads/Mediterranean/Mediterranean 01.jpg"},
+            {"name": "Whole Wheat", "code": "SD11000099", "weight": "500g", "size": "13 x 26 x 10cm", "allergens": ["Gluten"], "photo": "Sourdough Breads/Whole Wheat/Whole Wheat 01.jpg"},
+            {"name": "Chocolate", "description": "The dark chocolate loaf in our naturally fermented sourdough range.", "code": "SD11000105", "weight": "500g", "size": "13 x 26 x 10cm", "allergens": ["Gluten", "Soy"], "photo": "Sourdough Breads/Dark Chocolate/Dark Chocolate 01.jpg", "photo_note": "photo folder is 'Dark Chocolate'"},
+            {"name": "Choco Crumble Cookie", "code": "SD11000112", "weight": "500g", "size": "13 x 26 x 10cm", "allergens": ["Gluten", "Soy"], "photo": "Sourdough Breads/Choco Crumble Cookie/Choco Crumble Cookie 01.jpg"},
+            {"name": "Spicy Korean", "code": "SD11000129", "weight": "500g", "size": "13 x 26 x 10cm", "allergens": ["Gluten", "Soy"], "photo": "Sourdough Breads/Spicy Korean/Spicy Korean 01.jpg"},
+            {"name": "Cheesy Charcoal", "code": "SD11000136", "weight": "500g", "size": "13 x 26 x 10cm", "allergens": ["Gluten", "Soy", "Dairy"], "photo": "Sourdough Breads/Cheesy Charcoal/Cheesy Charcoal 01.jpg"},
+            {"name": "Rustic Pizza", "code": "SD11000143", "weight": "500g", "size": "13 x 26 x 10cm", "allergens": ["Gluten", "Soy"], "photo": "Sourdough Breads/Rustic Pizza/Rustic Pizza 01.jpg"},
+            {"name": "Garlic Cheese", "code": "SD11000167", "weight": "500g", "size": "13 x 26 x 10cm", "allergens": ["Gluten", "Soy"], "photo": "Sourdough Breads/Garlic/Garlic 01.jpg", "photo_note": "photo folder is 'Garlic'"},
+            {"name": "Chips Oman", "code": "SD11000174", "weight": "500g", "size": "13 x 26 x 10cm", "allergens": ["Gluten", "Soy"], "photo": "Sourdough Breads/Chips Oman/Chips Oman 01.jpg"},
+            {"name": "Signature Seasoned", "code": "SD11000181", "weight": "500g", "size": "13 x 26 x 10cm", "allergens": ["Gluten", "Sesame"], "photo": "Sourdough Breads/Signature Seasoned/Signature Seasoned Sourdough.jpg"}
+          ]
+        },
+        {
+          "id": "sourdough-baguette", "name": "Sourdough Baguette", "label": "Baguettes",
+          "description": "Long and golden, our baguettes have crisp crusts and light, airy crumbs. Their rustic flavour and chewy texture make them ideal for sandwiches and cheese boards, and equally delicious served fresh with butter.",
+          "products": [
+            {"name": "Traditional Baguette", "code": "SB12000012", "weight": "200g", "size": "37cm", "allergens": ["Gluten"], "photo": "Sourdough Baguettes/Traditional Baguette.jpg"},
+            {"name": "Classic Baguette", "code": "SB12000029", "weight": "400g", "size": "55cm", "allergens": ["Gluten"], "photo": "Sourdough Baguettes/Classic Baguette.jpg"},
+            {"name": "Whole Wheat Baguette", "code": "SB12000036", "weight": "400g", "size": "55cm", "allergens": ["Gluten"], "photo": "Sourdough Baguettes/Whole Wheat Baguette.jpg"},
+            {"name": "Signature Seasoned Baguette", "code": "SB12000036", "weight": "200g", "size": "37cm", "allergens": ["Gluten"], "photo": "Sourdough Baguettes/Signature Seasoned Baguette.jpg"}
+          ]
+        },
+        {
+          "id": "sourdough-ciabatta", "name": "Sourdough Ciabatta", "label": "Ciabattas",
+          "description": "Made with a slow-fermented sourdough starter, our ciabatta loaves have crisp, golden crusts, light, airy interiors, and a rich, tangy flavour.",
+          "products": [
+            {"name": "Classic 2pcs.", "code": "SC13000011", "weight": "160g", "size": "8 x 18cm", "allergens": ["Gluten"], "photo": "Ciabattas/Classic Ciabatta.jpg"},
+            {"name": "Tomato & Herb 2pcs.", "code": "SC13000028", "weight": "160g", "size": "8 x 18cm", "allergens": ["Gluten"], "photo": "Ciabattas/Tomato & Herb Ciabatta.jpg"},
+            {"name": "Whole Wheat 2pcs.", "code": "SC13000035", "weight": "160g", "size": "8 x 18cm", "allergens": ["Gluten"], "photo": "Ciabattas/Whole Wheat Ciabatta.jpg"}
+          ]
+        },
+        {
+          "id": "sliced-sourdough", "name": "Sliced Sourdough Bread", "label": "Sliced breads",
+          "description": "Our sliced sourdough bread has a soft, light texture, a tender crumb, and a mild flavour, making it ideal for sandwiches, toast, and everyday use.",
+          "products": [
+            {"name": "Classic", "code": "SD14000010", "weight": "450g", "size": "16 × 12 × 12 cm", "allergens": ["Gluten"], "photo": "Pain de Mie/White Loaf.jpg", "photo_note": "photo is 'White Loaf'"},
+            {"name": "Whole Wheat", "code": "SD14000027", "weight": "450g", "size": "16 × 12 × 12 cm", "allergens": ["Gluten"], "photo": "Pain de Mie/Whole Wheat Loaf.jpg"},
+            {"name": "Multigrain", "code": "SD14000041", "weight": "450g", "size": "16 × 12 × 12 cm", "allergens": ["Gluten", "Sesame", "Oats"], "photo": "Pain de Mie/Multigrain Loaf.jpg"},
+            {"name": "Protein", "code": "SD14000034", "weight": "450g", "size": "16 × 12 × 12 cm", "allergens": ["Gluten", "Sesame"], "photo": "Pain de Mie/Protein Loaf.jpg"},
+            {"name": "Granary", "code": "SD82247645", "weight": "1600g", "size": "16 × 12 × 12 cm", "allergens": ["Gluten", "Sesame"], "photo": "Pain de Mie/Granary Loaf.jpg"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Asian Breads",
+      "tagline": "Sourdough rolls | Filled buns | Mario breads | Breadstick",
+      "categories": [
+        {
+          "id": "asian-breads", "name": "Asian Breads", "label": "Asian breads",
+          "description": "Our Asian breads feature soft, fluffy textures and distinctive flavours, ranging from sweet and creamy favourites to savoury classics.",
+          "products": [
+            {"name": "Black Sesame Bread Roll", "code": "AB11000001", "weight": "80g", "size": "23 x 13 x 8cm", "allergens": ["Gluten", "Dairy", "Egg", "Soy", "Sesame"], "photo": "Asian Breads/Black Sesame Sourdough Roll/Black Sesame Sourdough Roll 01.jpg", "photo_note": "photo is 'Black Sesame Sourdough Roll'"},
+            {"name": "Blueberry Bread Roll", "code": "AB11000002", "weight": "80g", "size": "23 x 13 x 8cm", "allergens": ["Gluten", "Dairy", "Egg", "Soy"], "photo": "Asian Breads/Blueberry Sourdough Roll/Blueberry Sourdough Roll 01.jpg", "photo_note": "photo is 'Blueberry Sourdough Roll'"},
+            {"name": "Korean Garlic Bread Roll", "code": "AB11000003", "weight": "80g", "size": "23 x 13 x 8cm", "allergens": ["Gluten", "Dairy", "Egg"], "photo": "Asian Breads/Korean Garlic Sourdough Roll/Korean Garlic Sourdough Roll 01.jpg", "photo_note": "photo is 'Korean Garlic Sourdough Roll'"},
+            {"name": "Chocolate Bread Roll", "code": "AB11000004", "weight": "80g", "size": "23 x 13 x 8cm", "allergens": ["Gluten", "Dairy", "Egg", "Soy", "Sesame"], "photo": "Asian Breads/Chocolate Sourdough Roll/Chocolate Sourdough Roll 01.jpg", "photo_note": "photo is 'Chocolate Sourdough Roll'"},
+            {"name": "Korean Sea Salt Bread Roll", "code": "AB11000005", "weight": "80g", "size": "23 x 13 x 8cm", "allergens": ["Gluten", "Dairy", "Egg"], "photo": "Asian Breads/Sea Salt Sourdough Roll/Sea Salt Sourdough Roll 01.jpg", "photo_note": "photo is 'Sea Salt Sourdough Roll'"},
+            {"name": "Purple Taro Bun", "code": "AB11000006", "weight": "135g", "size": "9cm dia", "allergens": ["Gluten", "Dairy", "Egg"], "photo": "Asian Breads/Purple Taro Bun/Purple Taro Bun 01.jpg"},
+            {"name": "Choco Banana Bun", "code": "AB11000007", "weight": "135g", "size": "9cm dia", "allergens": ["Gluten", "Dairy", "Egg", "Soy"], "photo": "Asian Breads/Choco Banana Bun/Choco Banana Bun 01.jpg"},
+            {"name": "Coffee Bun", "code": "AB11000008", "weight": "90g", "size": "9cm dia", "allergens": ["Gluten", "Dairy", "Egg"], "photo": "Asian Breads/Coffee Bun/Coffee Bun 01.jpg"},
+            {"name": "Korean Garlic Bun", "code": "AB11000009", "weight": "140g", "size": "9cm dia", "allergens": ["Gluten", "Dairy", "Egg"], "photo": "Asian Breads/Korean Garlic Bun/Korean Garlic Bun 01.jpg"},
+            {"name": "Pistachio Mario Bread", "code": "AB110000010", "weight": "200g", "size": "15 x 3 x 4cm", "allergens": ["Gluten", "Dairy", "Egg", "Nuts"], "photo": "Asian Breads/Pistachio Mario Bread/Pistachio Mario Bread 01.jpg"},
+            {"name": "Yakult Mario Bread", "code": "AB11000011", "weight": "200g", "size": "15 x 3 x 4cm", "allergens": ["Gluten", "Dairy", "Egg", "Nuts"], "photo": "Asian Breads/Yakult Mario Bread/Yakult Mario Bread 01.jpg"},
+            {"name": "Dried Fruit Breadstick", "code": "AB11000012", "weight": "200g", "size": "20 x 2 x 2cm", "allergens": ["Gluten", "Soy", "Nuts"], "photo": "Asian Breads/Fruit Bread Cane/Fruit Bread Cane 01.jpg", "photo_note": "photo is 'Fruit Bread Cane'"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Buns",
+      "tagline": "Potato bun | Brioche bun",
+      "categories": [
+        {
+          "id": "buns", "name": "Buns", "label": "Buns",
+          "description": "Our fully baked buns are soft, light and versatile, crafted for consistent quality.",
+          "products": [
+            {"name": "Brioche 30g", "code": "NB12000043", "weight": "30g", "size": "7 x 4cm", "allergens": ["Gluten"], "photo": "Brioche/Brioche Bun.png", "photo_note": "photo is 'Brioche Bun'"},
+            {"name": "Brioche 60g", "code": "NB12000050", "weight": "60g", "size": "9 x 5cm", "allergens": ["Gluten"], "photo": "Brioche/Burger Brioche Bun.png", "photo_note": "photo is 'Burger Brioche Bun'"},
+            {"name": "Potato 30 gram", "code": "NB12000067", "weight": "30g", "size": "7 × 3.5cm", "allergens": ["Gluten"], "photo": null},
+            {"name": "Potato 60 gram", "code": "NB12000074", "weight": "60g", "size": "7.5 × 4.5cm", "allergens": ["Gluten"], "photo": null}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Viennoiseries",
+      "tagline": "Croissants | New York rolls | Cinnamon rolls",
+      "categories": [
+        {
+          "id": "croissants", "name": "Croissants", "label": "Croissants",
+          "description": "Buttery and flaky, our croissants are crafted using traditional French techniques and baked to a golden finish.",
+          "products": [
+            {"name": "French Butter", "code": "VN21000010", "weight": "90g", "size": "10 x 16cm", "allergens": ["Gluten", "Egg", "Dairy"], "photo": "Croissants/Plain Croissant.jpg", "photo_note": "photo is 'Plain Croissant'"},
+            {"name": "Melted Cheese", "code": "VN21000027", "weight": "95g", "size": "10 x 16cm", "allergens": ["Gluten", "Egg", "Dairy"], "photo": "Croissants/Cheese Croissant.jpg", "photo_note": "photo is 'Cheese Croissant'"},
+            {"name": "Pain au Chocolat", "code": "VN21000034", "weight": "95g", "size": "8 x 15cm", "allergens": ["Gluten", "Egg", "Dairy", "Soy"], "photo": "Croissants/Pain au Chocolat.jpg"},
+            {"name": "Khameer", "code": "VN21000041", "weight": "120g", "size": "10 x 16cm", "allergens": ["Gluten", "Egg", "Dairy", "Sesame"], "photo": "Croissants/Khameer Croissant 01.jpg"},
+            {"name": "Almond", "code": "VN21000058", "weight": "120g", "size": "10 x 16cm", "allergens": ["Gluten", "Egg", "Dairy", "Nuts"], "photo": "Croissants/Almond Croissant.png"},
+            {"name": "Salted Caramel", "code": "VN21000065", "weight": "120g", "size": "10 x 16cm", "allergens": ["Gluten", "Egg", "Dairy", "Nuts"], "photo": "Croissants/Salted Caramel Croissant.jpg"}
+          ]
+        },
+        {
+          "id": "new-york-roll", "name": "New York Roll", "label": "New York rolls",
+          "description": "Our New York rolls are made with delicate, buttery layers, shaped into signature rounds, and baked until golden and crisp.",
+          "products": [
+            {"name": "Pistachio", "code": "VN22000019", "weight": "125g", "size": "10cm", "allergens": ["Gluten", "Egg", "Dairy", "Nuts"], "photo": "New York Rolls/Pistachio New York Roll.jpg"},
+            {"name": "Chocolate", "code": "VN22000026", "weight": "125g", "size": "10cm", "allergens": ["Gluten", "Egg", "Dairy", "Soy"], "photo": "New York Rolls/Chocolate New York Roll.jpg"},
+            {"name": "Vanilla", "code": "VN22000033", "weight": "125g", "size": "10cm", "allergens": ["Gluten", "Egg", "Dairy"], "photo": "New York Rolls/Vanilla New York Roll.jpg"},
+            {"name": "Strawberry", "code": "VN22000040", "weight": "125g", "size": "10cm", "allergens": ["Gluten", "Egg", "Dairy"], "photo": "New York Rolls/Strawberry New York Roll.jpg"}
+          ]
+        },
+        {
+          "id": "cinnamon-roll", "name": "Cinnamon Roll", "label": "Cinnamon rolls",
+          "description": "Soft and fluffy, our cinnamon rolls are swirled with rich cinnamon sugar, baked until golden, and finished with a smooth glaze.",
+          "products": [
+            {"name": "Pistachio", "code": "VN22000057", "weight": "350g", "size": "10cm", "allergens": ["Gluten", "Egg", "Dairy", "Nuts"], "photo": "Cinnamon Rolls/Pistachio Cinnamon Roll.jpg"},
+            {"name": "Chocolate", "code": "VN22000064", "weight": "350g", "size": "10cm", "allergens": ["Gluten", "Egg", "Dairy", "Soy", "Nuts"], "photo": "Cinnamon Rolls/Chocolate Cinnamon Roll.jpg"},
+            {"name": "Vanilla", "code": "VN22000071", "weight": "350g", "size": "10cm", "allergens": ["Gluten", "Egg", "Dairy", "Nuts"], "photo": "Cinnamon Rolls/Classic Cinnamon Roll.jpg", "photo_note": "photo is 'Classic Cinnamon Roll'"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Pastries",
+      "tagline": "Tea cakes | Cookies | Mini muffins",
+      "categories": [
+        {
+          "id": "tea-cake", "name": "Tea Cake", "label": "Tea cakes",
+          "description": "Soft, moist cake with a light sweetness that pairs perfectly with coffee or tea. Simple yet delightful, it’s a timeless treat for any time of day.",
+          "products": [
+            {"name": "Marble", "code": "PS31000017", "weight": "275g", "size": "17 × 10 × 5 cm", "allergens": ["Gluten", "Egg", "Dairy"], "photo": "Tea Cakes/Marble Tea Cake.jpg"},
+            {"name": "Chocolate", "code": "PS31000024", "weight": "275g", "size": "17 × 10 × 5 cm", "allergens": ["Gluten", "Egg", "Dairy"], "photo": "Tea Cakes/Chocolate Tea Cake.jpg"},
+            {"name": "Banana", "code": "PS31000031", "weight": "275g", "size": "17 × 10 × 5 cm", "allergens": ["Gluten", "Egg", "Dairy"], "photo": "Tea Cakes/Banana Tea Cake.jpg"},
+            {"name": "Blueberry", "code": "PS31000048", "weight": "275g", "size": "17 × 10 × 5 cm", "allergens": ["Gluten", "Egg", "Dairy"], "photo": "Tea Cakes/Blueberry Tea Cake.jpg"},
+            {"name": "Vanilla", "code": "PS31000055", "weight": "275g", "size": "17 × 10 × 5 cm", "allergens": ["Gluten", "Egg", "Dairy"], "photo": "Tea Cakes/Vanilla Tea Cake.jpg"}
+          ]
+        },
+        {
+          "id": "cookie", "name": "Cookie", "label": "Cookies",
+          "description": "Warm, soft, and loaded with irresistible flavor, our freshly baked cookies are made to satisfy every sweet craving.",
+          "products": [
+            {"name": "Red Velvet", "code": "PS32000016", "weight": "175g", "size": "8cm", "allergens": ["Gluten", "Egg", "Dairy", "Soy", "Nuts"], "photo": "Cookies/Red Velvet Cookie.jpg"},
+            {"name": "Double Chocolate", "code": "PS32000023", "weight": "175g", "size": "8cm", "allergens": ["Gluten", "Egg", "Dairy", "Soy"], "photo": "Cookies/Double Choco Cookie.jpg"},
+            {"name": "Almond", "code": "PS32000030", "weight": "175g", "size": "8cm", "allergens": ["Gluten", "Egg", "Dairy", "Nuts"], "photo": "Cookies/Almond Cookie.jpg"},
+            {"name": "Matcha", "code": "PS32000047", "weight": "175g", "size": "8cm", "allergens": ["Gluten", "Egg", "Dairy", "Soy", "Nuts"], "photo": "Cookies/Matcha Cookie.jpg"},
+            {"name": "Choco Chip", "code": "PS32000054", "weight": "175g", "size": "8cm", "allergens": ["Gluten", "Egg", "Dairy", "Soy"], "photo": "Cookies/Choco Chip Cookie.jpg"}
+          ]
+        },
+        {
+          "id": "mini-muffin", "name": "Mini Muffin", "label": "Mini muffins",
+          "description": "Freshly baked muffins with a soft texture, rich flavor, and just the right touch of sweetness.",
+          "products": [
+            {"name": "Mini Vanilla 12pcs.", "code": "PS33000015", "weight": "210g", "size": "4cm", "allergens": ["Gluten", "Egg", "Dairy"], "photo": "Muffins/Vanilla Muffin 12pcs.jpg"},
+            {"name": "Mini Chocolate 12pcs.", "code": "PS33000022", "weight": "210g", "size": "4cm", "allergens": ["Gluten", "Egg", "Dairy", "Soy"], "photo": "Muffins/Chocolate Muffin 12pcs.jpg"},
+            {"name": "Mini Blueberry 12pcs.", "code": "PS33000039", "weight": "210g", "size": "4cm", "allergens": ["Gluten", "Egg", "Dairy"], "photo": "Muffins/Blueberry Muffin 12pcs.jpg"}
+          ]
+        }
+      ]
+    }
+  ]
+}
