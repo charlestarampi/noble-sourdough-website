@@ -290,7 +290,7 @@ async function serveGuestCatalogue(response, path, method) {
     const html = await readFile(join(contentRoot, "index.html"), "utf8");
     const guestHtml = html
       .replace("<title>Noble Sourdough Product Profile</title>", "<title>Noble Sourdough Guest Catalogue</title>")
-      .replace("<p>Product Profile</p>", "<p>Guest Catalogue</p>")
+      .replace('<span class="page-header-mode">Admin Mode</span>', '<span class="page-header-mode">Guest Mode</span>')
       .replace("<span>Local preview</span>", "")
       .replace("<span>Internal preview</span>", "<span>Guest view</span>");
     return send(response, 200, guestHtml, types.html);

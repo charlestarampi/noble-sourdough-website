@@ -65,6 +65,8 @@ img { display: block; max-width: 100%; }
 
 .page-header { position: sticky; z-index: 2; top: 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 16px; min-height: 64px; background: var(--surface); border-bottom: 1px solid var(--line); padding: 10px clamp(16px, 3vw, 44px); }
 .page-header-title { display: flex; align-items: center; gap: 12px; }
+.page-header-label { display: grid; gap: 2px; line-height: 1.2; }
+.page-header-mode { font-size: .73rem; color: var(--muted); }
 .page-header p { font-weight: 700; font-size: .95rem; }
 .page-header > span { font-size: .73rem; color: var(--muted); }
 .button, .page-header .profile-actions :is(a, button), .sort-control select, .view-options button, .filters button {
