@@ -17,9 +17,6 @@
       <nav id="catalogue-nav" aria-label="Client ranges" class="range-nav">
         <h2>Client catalogues</h2>
         <div id="client-list" class="range-list"></div>
-        <label class="mobile-ranges">Client
-          <select id="range-select" disabled><option>Loading clients…</option></select>
-        </label>
       </nav>
       <div class="sidebar-foot">Noble Sourdough <span>Internal preview</span></div>
     </aside>
@@ -30,15 +27,23 @@
           <button id="sidebar-toggle" class="button sidebar-toggle" type="button" aria-expanded="true" aria-controls="catalogue-nav" aria-label="Toggle client catalogue sidebar" title="Toggle client catalogue sidebar">
             <span class="sidebar-icon" aria-hidden="true"></span>
           </button>
+          <img class="mobile-brand-mark" src="/favicon.png" alt="" width="32" height="32">
           <p>Product Profile</p>
+        </div>
+        <div class="mobile-header-tools">
+          <button class="button mobile-search" type="button" id="mobile-search" aria-label="Search products" aria-expanded="false" aria-controls="catalogue-search" disabled><span class="search-icon" aria-hidden="true"></span></button>
+          <details id="mobile-account" class="mobile-account" hidden>
+            <summary>Account</summary>
+          </details>
         </div>
         <span>Local preview</span>
       </header>
       <div class="content">
+        <p class="mobile-catalogue-title">Client catalogues</p>
         <section class="hero" aria-labelledby="range-title">
           <div class="hero-copy">
             <p class="eyebrow" id="client-label">Client catalogue</p>
-            <h1 id="range-title">Loading catalogue</h1>
+            <h1 id="range-title" tabindex="-1">Loading catalogue</h1>
             <p id="catalogue-source" class="hero-caption"></p>
           </div>
           <dl class="hero-stats">
@@ -48,19 +53,20 @@
         </section>
         <section class="products" aria-labelledby="products-title">
           <div class="section-head">
-            <h2 id="products-title">Products</h2>
-            <label class="search">
+            <h2 id="products-title" tabindex="-1">Products</h2>
+            <label id="catalogue-search" class="search">
               <span aria-hidden="true" class="search-icon"></span>
               <span class="sr-only">Search products by name or SKU</span>
               <input id="search" type="search" placeholder="Search by name or SKU" disabled>
             </label>
           </div>
           <div id="catalogue-controls" class="toolbar" hidden>
+            <p class="mobile-filter-title" aria-hidden="true">Filters</p>
             <div class="filters" role="group" aria-label="Filter products">
-              <button type="button" data-filter="all" aria-pressed="true">All products</button>
-              <button id="missing-skus" type="button" data-filter="missing-sku" aria-pressed="false">Missing SKUs</button>
-              <button type="button" data-filter="with" aria-pressed="false">With photos</button>
-              <button type="button" data-filter="review" aria-pressed="false">Needs review</button>
+              <button type="button" data-filter="all" aria-pressed="true"><span class="filter-photo" aria-hidden="true"></span><span class="filter-label">All products</span></button>
+              <button id="missing-skus" type="button" data-filter="missing-sku" aria-pressed="false"><span class="filter-photo" aria-hidden="true"></span><span class="filter-label">Missing SKUs</span></button>
+              <button type="button" data-filter="with" aria-pressed="false"><span class="filter-photo" aria-hidden="true"></span><span class="filter-label">With photos</span></button>
+              <button type="button" data-filter="review" aria-pressed="false"><span class="filter-photo" aria-hidden="true"></span><span class="filter-label">Needs review</span></button>
             </div>
             <div class="view-tools">
               <label class="sort-control">
@@ -102,6 +108,11 @@
       </div>
     </main>
   </div>
+  <nav class="mobile-dock" aria-label="Catalogue shortcuts">
+    <button type="button" data-scroll-target="range-title">Overview</button>
+    <label class="mobile-client-picker">Clients<select id="range-select" aria-label="Client catalogue" disabled><option>Loading clients…</option></select></label>
+    <button type="button" data-scroll-target="products-title">Products</button>
+  </nav>
 
   <template id="product-card">
     <article class="card">
@@ -132,6 +143,7 @@
         </div>
         <div class="detail-copy">
           <div class="detail-heading">
+            <p id="mobile-detail-range" class="eyebrow mobile-detail-range"></p>
             <p class="eyebrow"><span id="detail-bake-label">Bake status · </span><span id="detail-bake-status"></span></p>
             <h2 id="detail-title"></h2>
           </div>

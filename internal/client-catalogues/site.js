@@ -19,9 +19,14 @@
   const table = id("table-view");
   const rows = id("product-rows");
   const search = id("search");
+  const searchPanel = id("catalogue-search");
   const sort = id("sort-products");
   const reset = id("reset-products");
   const sidebarToggle = id("sidebar-toggle");
+  const mobileSearch = id("mobile-search");
+  const mobileAccount = id("mobile-account");
+  const pageHeader = document.querySelector(".page-header");
+  const profileActions = pageHeader.querySelector(".profile-actions");
   const feedback = id("item-feedback");
   const copySku = id("copy-customer-sku");
   const buttons = [...document.querySelectorAll("[data-filter]")];
@@ -101,6 +106,7 @@
     rows.push([dimensionLabel, dimensions || "—"]);
     const specs = rows.map(([label, value], index) => {
       const row = element("span");
+      if (index === 1) row.className = "card-customer-sku";
       const field = element("strong");
       if (index < 2) {
         renderSku(field, value, index === 1);
@@ -167,6 +173,11 @@
     viewButtons.forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.view === view)));
   }
 
+  function setMobileSearch(open) {
+    searchPanel.toggleAttribute("data-mobile-open", open);
+    mobileSearch.setAttribute("aria-expanded", String(open));
+  }
+
   function syncSidebar() {
     const collapsed = desktop.matches && Boolean(settings.sidebarCollapsed);
     document.querySelector(".workspace").classList.toggle("sidebar-collapsed", collapsed);
@@ -175,6 +186,41 @@
     const label = collapsed ? "Show client catalogues" : "Hide client catalogues";
     sidebarToggle.setAttribute("aria-label", label);
     sidebarToggle.title = label;
+    if (profileActions) {
+      const container = desktop.matches ? pageHeader : mobileAccount;
+      if (profileActions.parentElement !== container) container.append(profileActions);
+      mobileAccount.hidden = desktop.matches;
+      if (desktop.matches) mobileAccount.open = false;
+    }
+    renderFilterPhotos();
+  }
+
+  function matchesFilter(product, selectedFilter) {
+    if (selectedFilter === "missing-sku") return hasMissingSku(product);
+    if (selectedFilter === "with") return product.photos.length > 0;
+    if (selectedFilter === "review") {
+      return hasMissingSku(product) || !product.photos.length || product.photoReview ||
+        !product.skuSource || (!product.productionSku && product.duplicateCustomerSku) || Boolean(product.skuNote) ||
+        Boolean(product.dimensions?.note);
+    }
+    return true;
+  }
+
+  function renderFilterPhotos() {
+    if (desktop.matches || !active) return;
+    const photos = active.products.filter((product) => product.photos.length);
+    const used = new Set();
+    for (const button of buttons) {
+      const matching = photos.filter((product) => matchesFilter(product, button.dataset.filter));
+      const product = matching.find((entry) => !used.has(entry)) || matching[0];
+      const target = button.querySelector(".filter-photo");
+      if (product) {
+        target.replaceChildren(photoImage(product.photos[0], "", true));
+        used.add(product);
+      } else {
+        target.replaceChildren();
+      }
+    }
   }
 
   function renderProducts(animate = true) {
@@ -185,17 +231,8 @@
         .join(" ").toLowerCase();
       return query.every((word) => reference.includes(word));
     });
-    missingSkuButton.textContent = `Missing SKUs (${matches.filter(hasMissingSku).length})`;
-    const products = matches.filter((product) => {
-      if (filter === "missing-sku") return hasMissingSku(product);
-      if (filter === "with") return product.photos.length > 0;
-      if (filter === "review") {
-        return hasMissingSku(product) || !product.photos.length || product.photoReview ||
-          !product.skuSource || (!product.productionSku && product.duplicateCustomerSku) || Boolean(product.skuNote) ||
-          Boolean(product.dimensions?.note);
-      }
-      return true;
-    });
+    missingSkuButton.querySelector(".filter-label").textContent = `Missing SKUs (${matches.filter(hasMissingSku).length})`;
+    const products = matches.filter((product) => matchesFilter(product, filter));
     if (sort.value === "name-asc") products.sort((a, b) => order.compare(a.name, b.name));
     if (sort.value === "name-desc") products.sort((a, b) => order.compare(b.name, a.name));
     if (sort.value === "customer-sku") products.sort((a, b) =>
@@ -244,6 +281,7 @@
     id("photos-total").textContent = range.products.filter((product) => product.photos.length).length;
     const saved = settings.ranges?.[range.id];
     search.value = saved?.search || "";
+    setMobileSearch(Boolean(search.value));
     filter = buttons.some((button) => button.dataset.filter === saved?.filter) ? saved.filter : "all";
     sort.value = saved?.sort || "source";
     if (!sort.value) sort.value = "source";
@@ -254,6 +292,7 @@
     });
     select.value = range.id;
     renderProducts();
+    renderFilterPhotos();
     window.scrollTo(0, rangeScroll.get(range.id) || 0);
   }
 
@@ -359,7 +398,9 @@
     itemAnimation?.cancel();
     const product = detailProducts[detailIndex];
     detailPhoto = 0;
-    id("detail-range").textContent = rangeDisplayName(active);
+    const rangeName = rangeDisplayName(active);
+    id("detail-range").textContent = rangeName;
+    id("mobile-detail-range").textContent = rangeName;
     id("detail-title").textContent = product.name;
     const { dimensions, weight } = productSpecs(product);
     const bakeStatus = fullyBakedExceptions.has(active.id) ? product.bakeStatus?.trim() : "Fully baked";
@@ -449,7 +490,8 @@
     sort.value = "source";
     search.value = "";
     updateProducts();
-    search.focus();
+    const focusTarget = desktop.matches || searchPanel.hasAttribute("data-mobile-open") ? search : id("products-title");
+    focusTarget.focus();
   });
   sidebarToggle.addEventListener("click", () => {
     settings.sidebarCollapsed = !settings.sidebarCollapsed;
@@ -458,6 +500,32 @@
   });
   desktop.addEventListener("change", syncSidebar);
   syncSidebar();
+  function jumpTo(target) {
+    target.focus({ preventScroll: true });
+    const behavior = reducedMotion.matches ? "auto" : "smooth";
+    if (target.id === "range-title") window.scrollTo({ top: 0, behavior });
+    else target.scrollIntoView({ block: "start", behavior });
+  }
+  mobileSearch.addEventListener("click", () => {
+    mobileAccount.open = false;
+    const open = !searchPanel.hasAttribute("data-mobile-open");
+    setMobileSearch(open);
+    if (open) jumpTo(search);
+  });
+  search.addEventListener("keydown", (event) => {
+    if (desktop.matches || event.key !== "Escape") return;
+    event.preventDefault();
+    setMobileSearch(false);
+    mobileSearch.focus();
+  });
+  document.querySelectorAll("[data-scroll-target]").forEach((button) => {
+    button.addEventListener("click", () => jumpTo(id(button.dataset.scrollTarget)));
+  });
+  mobileAccount.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || !mobileAccount.open) return;
+    mobileAccount.open = false;
+    mobileAccount.querySelector("summary").focus();
+  });
   document.querySelector(".skip").addEventListener("click", (event) => {
     event.preventDefault();
     id("main").focus();
@@ -542,6 +610,7 @@
       if (active) {
         id("catalogue-controls").hidden = false;
         search.disabled = false;
+        mobileSearch.disabled = false;
         select.disabled = false;
         if (restoreFocus) search.focus();
       } else {
