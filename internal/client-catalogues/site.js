@@ -379,13 +379,28 @@
     clientRangePicker.showModal();
   }
 
+  const overviewBrandNames = new Map([
+    ["ADNH", "ADNH"],
+    ["DUNKIN", "Dunkin'"],
+    ["EATX", "EATX"],
+    ["GMG", "GMG"],
+    ["Noble Cafe", "Noble Café"],
+    ["WHFIT", "Warehouse Fitness"]
+  ]);
+
+  function overviewClientName(company) {
+    return overviewBrandNames.get(company) ?? company.toLowerCase().replace(/(^|\s)\p{L}/gu, (first) => first.toUpperCase());
+  }
+
   function renderClientOverview(logos) {
     const companies = new Map();
     for (const range of ranges) {
       if (!companies.has(range.client)) companies.set(range.client, []);
       companies.get(range.client).push(range);
     }
-    const cards = [...companies.entries()].sort(([a], [b]) => order.compare(a, b)).map(([company, catalogues]) => {
+    const clients = [...companies.entries()].sort(([a], [b]) => order.compare(overviewClientName(a), overviewClientName(b)));
+    const cards = clients.map(([company, catalogues]) => {
+      const name = overviewClientName(company);
       const card = element("li");
       const [first] = catalogues;
       const tile = element(catalogues.length === 1 ? "a" : "button");
@@ -403,14 +418,14 @@
       }
       const caption = element("span");
       caption.className = "client-tile-caption";
-      caption.append(element("strong", company));
+      caption.append(element("strong", name));
       if (catalogues.length === 1) {
         tile.href = `#${first.id}`;
       } else {
         tile.type = "button";
         tile.setAttribute("aria-haspopup", "dialog");
         caption.append(element("small", `${catalogues.length} catalogues`));
-        tile.addEventListener("click", () => chooseClientCatalogue(company, catalogues));
+        tile.addEventListener("click", () => chooseClientCatalogue(name, catalogues));
       }
       tile.append(art, caption);
       card.append(tile);

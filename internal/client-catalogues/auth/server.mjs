@@ -33,6 +33,7 @@ const types = {
   ttf: "font/ttf"
 };
 const guestPages = new Set(dashboardManaged ? ["/sign-in"] : ["/sign-in", "/forgot-password", "/set-password"]);
+const catalogueFilePath = /^\/(?:site\.js|catalogues\.json|assets\/[A-Za-z0-9_.-]+\.(?:webp|otf|ttf))$/;
 const productActions = `
   <div class="profile-actions">
     <a href="/download.csv">Download products</a>
@@ -280,6 +281,26 @@ async function serveFile(response, path, headOnly) {
   await pipeline(createReadStream(file), response);
 }
 
+async function serveGuestCatalogue(response, path, method) {
+  if (method !== "GET" && method !== "HEAD") return send(response, 405, "Method not allowed");
+  if (path === "/guest") return redirect(response, "/guest/");
+
+  const cataloguePath = path.slice("/guest".length);
+  if (cataloguePath === "/") {
+    const html = await readFile(join(contentRoot, "index.html"), "utf8");
+    const guestHtml = html
+      .replace("<title>Noble Sourdough Product Profile</title>", "<title>Noble Sourdough Guest Catalogue</title>")
+      .replace("<p>Product Profile</p>", "<p>Guest Catalogue</p>")
+      .replace("<span>Local preview</span>", "")
+      .replace("<span>Internal preview</span>", "<span>Guest view</span>");
+    return send(response, 200, guestHtml, types.html);
+  }
+  if (cataloguePath === "/site.css" || catalogueFilePath.test(cataloguePath)) {
+    return await serveFile(response, cataloguePath, method === "HEAD");
+  }
+  return send(response, 404, "Not found");
+}
+
 export default async function handle(request, response) {
   response.setHeader("Cache-Control", "private, no-store");
   response.setHeader("X-Content-Type-Options", "nosniff");
@@ -291,6 +312,9 @@ export default async function handle(request, response) {
     const url = new URL(request.url, appOrigin);
     const path = url.pathname;
     const method = request.method;
+    if (path === "/guest" || path.startsWith("/guest/")) {
+      return await serveGuestCatalogue(response, path, method);
+    }
     if (dashboardManaged && ["/forgot-password", "/set-password", "/manage-access"].includes(path)) {
       return send(response, 404, "Not found");
     }
@@ -351,7 +375,7 @@ export default async function handle(request, response) {
       return send(response, 200, html.replace("<span>Local preview</span>", controls).replace("<span>Internal preview</span>", "<span>Internal catalogue</span>"), types.html);
     }
     if (path === "/site.css") return send(response, 200, (await readFile(join(contentRoot, "site.css"), "utf8")) + actionCss, types.css);
-    if (path === "/site.js" || path === "/catalogues.json" || /^\/assets\/[A-Za-z0-9_.-]+\.(?:webp|otf|ttf)$/.test(path)) {
+    if (catalogueFilePath.test(path)) {
       return await serveFile(response, path, method === "HEAD");
     }
     return send(response, 404, "Not found");

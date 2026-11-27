@@ -313,9 +313,10 @@ html:has(#product-detail[open], #client-range-picker[open]) { overflow: hidden; 
   .toolbar { display: grid; gap: 10px; }
   .mobile-filter-title { display: block; color: var(--ink); font-size: .8rem; font-weight: 700; }
   .filters { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
-  .filters button { flex-direction: column; min-height: 78px; padding: 5px 3px; border-radius: 12px; font-size: clamp(.62rem, 2.45vw, .72rem); line-height: 1.23; }
+  .filters button { flex-direction: column; justify-content: flex-start; min-height: 78px; padding: 12px 3px 5px; border-radius: 12px; font-size: clamp(.62rem, 2.45vw, .72rem); line-height: 1.23; }
   .filter-label { max-width: 100%; overflow-wrap: anywhere; }
-  .filter-photo:not(:empty) { display: block; width: 32px; height: 32px; border-radius: 50%; overflow: hidden; background: white; }
+  .filter-photo { display: block; flex: none; width: 32px; height: 32px; border-radius: 50%; overflow: hidden; }
+  .filter-photo:not(:empty) { background: white; }
   .filter-photo img { width: 100%; height: 100%; object-fit: cover; }
   .view-tools { flex-wrap: wrap; justify-content: space-between; }
   .sort-control select { appearance: none; }
