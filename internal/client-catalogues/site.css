@@ -151,7 +151,7 @@ img { display: block; max-width: 100%; }
 .row-thumbnail { display: grid; place-items: center; flex: 0 0 38px; height: 38px; border: 1px solid var(--line); border-radius: 6px; background: white; color: var(--muted); }
 .row-thumbnail img { width: 100%; height: 36px; object-fit: contain; }
 
-html:has(#product-detail[open]) { overflow: hidden; }
+html:has(#product-detail[open], #client-range-picker[open]) { overflow: hidden; }
 #product-detail {
   width: min(960px, calc(100% - 32px)); height: min(720px, calc(100dvh - max(32px, env(safe-area-inset-top) + env(safe-area-inset-bottom) + 16px))); max-height: none;
   padding: clamp(16px, 3vw, 34px); border: 0; border-radius: 20px;
@@ -246,6 +246,41 @@ html:has(#product-detail[open]) { overflow: hidden; }
       calc(104px + env(safe-area-inset-bottom)) max(var(--mobile-edge), env(safe-area-inset-left));
   }
   .mobile-catalogue-title { display: block; margin-bottom: 16px; font-size: clamp(1.7rem, 7vw, 2.25rem); font-weight: 700; letter-spacing: -.055em; line-height: 1.1; }
+  .client-overview h1 { font-size: clamp(1.7rem, 7vw, 2.25rem); letter-spacing: -.055em; line-height: 1.1; scroll-margin-top: calc(78px + env(safe-area-inset-top)); }
+  .client-overview h1:focus { outline: none; }
+  #client-overview-count { margin-top: 8px; color: var(--muted); font-size: .8rem; }
+  .client-directory { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 16px; padding: 0; list-style: none; }
+  .client-tile {
+    display: grid; grid-template-rows: minmax(0, 1fr) auto; width: 100%; height: 100%; min-height: 95px;
+    aspect-ratio: 1.04; overflow: hidden; padding: 5px 4px 4px; border: 1px solid rgb(0 22 58 / .08);
+    border-radius: 14px; background: var(--surface);
+    text-decoration: none; text-align: center; color: var(--navy);
+    transition: border-color var(--speed-control), transform var(--speed-quick);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .client-tile:active { border-color: var(--blue); transform: scale(.98); }
+  .client-tile-photo { display: grid; place-items: center; min-height: 0; }
+  .client-tile-photo img { width: 100%; height: 100%; min-height: 0; max-height: 105px; object-fit: contain; mix-blend-mode: multiply; }
+  .client-tile-photo .client-tile-logo { width: calc(100% - 16px); height: calc(100% - 12px); max-height: 64px; mix-blend-mode: normal; }
+  .client-tile-caption { display: grid; align-content: center; min-height: 28px; padding: 2px; font-size: clamp(.63rem, 2.7vw, .83rem); line-height: 1.16; overflow-wrap: anywhere; }
+  .client-tile-caption small { margin-top: 2px; color: var(--muted); font-size: .61rem; }
+  #client-range-picker {
+    width: min(calc(100% - 32px), 420px); max-height: calc(100dvh - 32px); padding: 14px;
+    border: 1px solid var(--line); border-radius: 18px; background: var(--paper); color: var(--navy);
+  }
+  #client-range-picker[open] { animation: modal-in var(--speed-panel) var(--ease); }
+  #client-range-picker::backdrop { background: rgb(0 22 58 / .5); }
+  .client-range-picker-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+  .client-range-picker-header h2 { font-size: 1.1rem; }
+  .client-range-picker-header button { width: var(--control); padding: 0; border-radius: 50%; font-size: 1.2rem; }
+  #client-range-picker-options { display: grid; gap: 6px; padding: 0; list-style: none; }
+  #client-range-picker-options a {
+    display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: var(--control);
+    border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; background: white;
+    color: var(--blue); text-decoration: none; font-size: .82rem;
+  }
+  #client-range-picker-options a:active { background: var(--soft-blue); }
+  #client-range-picker-options small { flex: none; color: var(--muted); }
   .hero { grid-template-columns: minmax(0, 1fr); gap: 0; padding: 0; border-radius: 20px; }
   .hero-copy {
     display: flex; flex-direction: column; align-items: flex-start; justify-content: end;
@@ -304,6 +339,7 @@ html:has(#product-detail[open]) { overflow: hidden; }
     border: 0; border-radius: 999px; background: transparent; color: var(--ink); font-size: .72rem; font-weight: 700;
   }
   .mobile-dock button:active { background: var(--soft-blue); }
+  .mobile-dock button[aria-current="page"] { background: var(--soft-blue); color: var(--blue); }
   .mobile-client-picker { background: var(--blue); color: white; }
   .mobile-client-picker select { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; font-size: 16px; }
   .mobile-client-picker:focus-within { outline: 2px solid var(--blue); outline-offset: 3px; }

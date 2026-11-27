@@ -38,7 +38,12 @@
         </div>
         <span>Local preview</span>
       </header>
-      <div class="content">
+      <section id="client-overview" class="content client-overview" aria-labelledby="client-overview-title" hidden>
+        <h1 id="client-overview-title" tabindex="-1">All clients</h1>
+        <p id="client-overview-count"></p>
+        <ul id="client-directory" class="client-directory"></ul>
+      </section>
+      <div id="catalogue-content" class="content">
         <p class="mobile-catalogue-title">Client catalogues</p>
         <section class="hero" aria-labelledby="range-title">
           <div class="hero-copy">
@@ -109,7 +114,7 @@
     </main>
   </div>
   <nav class="mobile-dock" aria-label="Catalogue shortcuts">
-    <button type="button" data-scroll-target="range-title">Overview</button>
+    <button id="overview-tab" type="button" aria-controls="client-overview" disabled>Overview</button>
     <label class="mobile-client-picker">Clients<select id="range-select" aria-label="Client catalogue" disabled><option>Loading clients…</option></select></label>
     <button type="button" data-scroll-target="products-title">Products</button>
   </nav>
@@ -125,6 +130,14 @@
       </button>
     </article>
   </template>
+
+  <dialog id="client-range-picker" aria-labelledby="client-range-picker-title">
+    <div class="client-range-picker-header">
+      <h2 id="client-range-picker-title"></h2>
+      <form method="dialog"><button type="submit" class="button" aria-label="Close catalogue choices">×</button></form>
+    </div>
+    <ul id="client-range-picker-options"></ul>
+  </dialog>
 
   <dialog id="product-detail" aria-labelledby="detail-title">
     <div class="dialog-header">
