@@ -1,4 +1,4 @@
-import { copyFile, cp, mkdir, readdir, stat, writeFile } from "node:fs/promises";
+import { copyFile, cp, mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -15,6 +15,13 @@ for (const page of pages) {
 const photos = await readdir(join(source, "assets"), { withFileTypes: true });
 if (!photos.length || photos.some((file) => !file.isFile() || !/^[A-Za-z0-9_.-]+\.(?:webp|otf|ttf)$/.test(file.name))) {
   throw new Error("Unexpected files in the catalogue assets directory");
+}
+const { clientLogos = {} } = JSON.parse(await readFile(join(source, "catalogues.json"), "utf8"));
+const assetNames = new Set(photos.map((file) => file.name));
+for (const slug of Object.values(clientLogos)) {
+  if (typeof slug !== "string" || !/^[a-z0-9-]+$/.test(slug) || !assetNames.has(`client-logo-${slug}.webp`)) {
+    throw new Error("The catalogue references a client logo missing from the export.");
+  }
 }
 
 await mkdir(release);
