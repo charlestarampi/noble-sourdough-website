@@ -11,7 +11,7 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to catalogue</a>
-  <div class="workspace">
+  <div class="workspace sidebar-collapsed">
     <aside class="sidebar">
       <div class="brand"><img src="assets/logo.webp" alt="Noble Sourdough" width="163" height="65"></div>
       <nav id="catalogue-nav" aria-label="Client ranges" class="range-nav">
@@ -24,18 +24,18 @@
     <main id="main" tabindex="-1">
       <header class="page-header">
         <div class="page-header-title">
-          <button id="sidebar-toggle" class="button sidebar-toggle" type="button" aria-expanded="true" aria-controls="catalogue-nav" aria-label="Toggle client catalogue sidebar" title="Toggle client catalogue sidebar">
+          <button id="sidebar-toggle" class="button sidebar-toggle" type="button" aria-expanded="false" aria-controls="catalogue-nav" aria-label="Show client catalogues" title="Show client catalogues">
             <span class="sidebar-icon" aria-hidden="true"></span>
           </button>
-          <img class="mobile-brand-mark" src="/favicon.png" alt="" width="32" height="32">
+          <img class="header-brand-mark" src="/favicon.png" alt="" width="32" height="32">
           <div class="page-header-label">
             <p>PRODUCT PROFILE</p>
             <span class="page-header-mode">Admin Mode</span>
           </div>
         </div>
-        <div class="mobile-header-tools">
-          <button class="button mobile-search" type="button" id="mobile-search" aria-label="Search products" aria-expanded="false" aria-controls="catalogue-search" disabled><span class="search-icon" aria-hidden="true"></span></button>
-          <details id="mobile-account" class="mobile-account" hidden>
+        <div class="header-tools">
+          <button class="button header-search" type="button" id="mobile-search" aria-label="Search products" aria-expanded="false" aria-controls="catalogue-search" disabled><span class="search-icon" aria-hidden="true"></span></button>
+          <details id="mobile-account" class="profile-menu" hidden>
             <summary>Account</summary>
           </details>
         </div>
@@ -69,7 +69,7 @@
             </label>
           </div>
           <div id="catalogue-controls" class="toolbar" hidden>
-            <p class="mobile-filter-title" aria-hidden="true">Filters</p>
+            <p class="filter-title" aria-hidden="true">Filters</p>
             <div class="filters" role="group" aria-label="Filter products">
               <button type="button" data-filter="all" aria-pressed="true"><span class="filter-photo" aria-hidden="true"></span><span class="filter-label">All products</span></button>
               <button id="missing-skus" type="button" data-filter="missing-sku" aria-pressed="false"><span class="filter-photo" aria-hidden="true"></span><span class="filter-label">Missing SKUs</span></button>
@@ -116,11 +116,21 @@
       </div>
     </main>
   </div>
-  <nav class="mobile-dock" aria-label="Catalogue shortcuts">
+  <nav class="catalogue-dock" aria-label="Catalogue shortcuts">
     <button id="overview-tab" type="button" aria-controls="client-overview" disabled>Overview</button>
-    <label class="mobile-client-picker">Clients<select id="range-select" aria-label="Client catalogue" disabled><option>Loading clients…</option></select></label>
+    <button id="client-menu-toggle" class="client-picker" type="button" popovertarget="client-menu" aria-controls="client-menu" aria-expanded="false" aria-haspopup="dialog" disabled>
+      Clients <span class="client-picker-arrow" aria-hidden="true"></span>
+    </button>
     <button type="button" data-scroll-target="products-title">Products</button>
   </nav>
+  <dialog id="client-menu" class="client-menu" popover="auto" aria-labelledby="client-menu-title">
+    <header class="client-menu-header">
+      <button id="client-menu-back" class="client-menu-back" type="button" aria-label="Back to client catalogues" hidden></button>
+      <h2 id="client-menu-title">Client catalogues</h2>
+    </header>
+    <div id="client-menu-options" class="client-menu-options"></div>
+    <div id="client-menu-catalogues" class="client-menu-options client-menu-catalogues" role="group" aria-labelledby="client-menu-title" hidden></div>
+  </dialog>
 
   <template id="product-card">
     <article class="card">

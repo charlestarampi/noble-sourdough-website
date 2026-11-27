@@ -38,7 +38,14 @@
   const copySku = id("copy-customer-sku");
   const buttons = [...document.querySelectorAll("[data-filter]")];
   const viewButtons = [...document.querySelectorAll("[data-view]")];
-  const select = id("range-select");
+  const clientMenu = id("client-menu");
+  const clientMenuToggle = id("client-menu-toggle");
+  const clientMenuOptions = id("client-menu-options");
+  const clientMenuCatalogues = id("client-menu-catalogues");
+  const clientMenuTitle = id("client-menu-title");
+  const clientMenuBack = id("client-menu-back");
+  const nativeClientPopover = typeof clientMenu.showPopover === "function";
+  const rangeSources = [["production", "Production"], ["bom", "BOM reference"]];
   const rangePriority = new Map([
     ["careem-moonshot", 0],
     ["talabat-ultra-fresh", 1],
@@ -47,6 +54,7 @@
   const fullyBakedExceptions = new Set(["gmg-frozen", "eatx", "adnh", "dunkin", "thriv", "bando", "raiz"]);
   const missingSkuButton = id("missing-skus");
   const rangeButtons = new Map();
+  const clientMenuRows = new Map();
   const rangeScroll = new Map();
   const order = new Intl.Collator(undefined, { numeric: true, sensitivity: "base" });
   const settingsKey = "noble-product-profile-settings";
@@ -72,13 +80,10 @@
   let feedbackTimer;
   let loading = false;
   let shortcutTarget;
+  let clientMenuParent;
 
   const clientDisplayName = (range) => range.client.toUpperCase();
   const hasMissingSku = (product) => !product.internalSku || !product.customerSku;
-  const rangeDisplayName = (range) => {
-    const client = clientDisplayName(range);
-    return range.client === range.label ? client : `${client} · ${range.label}`;
-  };
 
   function productSpecs(product) {
     const size = product.dimensions?.valuesCm;
@@ -183,24 +188,17 @@
 
   function setMobileSearch(open) {
     searchPanel.toggleAttribute("data-mobile-open", open);
-    mobileSearch.setAttribute("aria-expanded", String(open));
+    mobileSearch.setAttribute("aria-expanded", String(overview.hidden && (desktop.matches || open)));
   }
 
   function syncSidebar() {
-    const collapsed = desktop.matches && Boolean(settings.sidebarCollapsed);
+    const collapsed = desktop.matches && settings.sidebarCollapsed !== false;
     document.querySelector(".workspace").classList.toggle("sidebar-collapsed", collapsed);
     id("catalogue-nav").inert = collapsed;
     sidebarToggle.setAttribute("aria-expanded", String(!collapsed));
     const label = collapsed ? "Show client catalogues" : "Hide client catalogues";
     sidebarToggle.setAttribute("aria-label", label);
     sidebarToggle.title = label;
-    if (profileActions) {
-      const container = desktop.matches ? pageHeader : mobileAccount;
-      if (profileActions.parentElement !== container) container.append(profileActions);
-      mobileAccount.hidden = desktop.matches;
-      if (desktop.matches) mobileAccount.open = false;
-    }
-    renderFilterPhotos();
   }
 
   function matchesFilter(product, selectedFilter) {
@@ -215,7 +213,7 @@
   }
 
   function renderFilterPhotos() {
-    if (desktop.matches || !active) return;
+    if (!active) return;
     const photos = active.products.filter((product) => product.photos.length);
     const used = new Set();
     for (const button of buttons) {
@@ -298,7 +296,6 @@
       if (rangeId === range.id) button.setAttribute("aria-current", "location");
       else button.removeAttribute("aria-current");
     });
-    select.value = range.id;
     renderProducts();
     renderFilterPhotos();
     return true;
@@ -306,16 +303,25 @@
 
   function onRangeHash() {
     const overviewRequested = location.hash === overviewHash;
-    const showOverview = overviewRequested && !desktop.matches && ranges.length > 0;
+    const showOverview = overviewRequested && ranges.length > 0;
     const wasOverview = !overview.hidden;
-    const range = (overviewRequested ? active : ranges.find((entry) => entry.id === location.hash.slice(1))) || ranges[0];
+    const rangeId = overviewRequested ? active?.id ?? settings.selectedClientRange : location.hash.slice(1);
+    const range = ranges.find((entry) => entry.id === rangeId) || ranges[0];
     const changed = range && selectRange(range);
     if (showOverview && !wasOverview && active) rangeScroll.set(active.id, window.scrollY);
     overview.hidden = !showOverview;
     catalogueContent.hidden = showOverview;
+    setMobileSearch(searchPanel.hasAttribute("data-mobile-open"));
+    if (!showOverview && active && location.hash === `#${active.id}` && settings.selectedClientRange !== active.id) {
+      settings.selectedClientRange = active.id;
+      saveSettings();
+    }
+    clientMenuOptions.querySelector("[aria-current]")?.removeAttribute("aria-current");
+    const currentClient = clientMenuRows.get(selectedCatalogue());
+    currentClient?.setAttribute("aria-current", !showOverview && currentClient.matches("a") ? "location" : "true");
+    closeClientMenu();
     if (showOverview) {
       overviewTab.setAttribute("aria-current", "page");
-      select.value = "";
       if (!wasOverview) {
         window.scrollTo(0, 0);
         overviewTitle.focus({ preventScroll: true });
@@ -324,31 +330,31 @@
     }
     if (clientRangePicker.open) clientRangePicker.close();
     overviewTab.removeAttribute("aria-current");
-    if (active) select.value = active.id;
     if (shortcutTarget) {
       jumpTo(shortcutTarget);
       shortcutTarget = null;
     } else if (changed || wasOverview) {
       window.scrollTo(0, rangeScroll.get(range.id) || 0);
-      if (wasOverview && !desktop.matches) id("range-title").focus({ preventScroll: true });
+      if (wasOverview) id("range-title").focus({ preventScroll: true });
     }
   }
 
-  function renderRangeOptions() {
-    const placeholder = element("option", "Choose a client");
-    placeholder.value = "";
-    placeholder.disabled = true;
-    select.replaceChildren(placeholder);
+  function selectedCatalogue() {
+    return overview.hidden ? active?.id : settings.selectedClientRange;
+  }
+
+  function renderRangeOptions(companies, logos) {
     const list = id("client-list");
-    for (const [source, label] of [["production", "Production"], ["bom", "BOM reference"]]) {
+    list.replaceChildren();
+    clientMenuOptions.replaceChildren();
+    rangeButtons.clear();
+    clientMenuRows.clear();
+    for (const [source, label] of rangeSources) {
       const group = ranges.filter((range) => range.source === source);
       if (!group.length) continue;
-      const heading = element("h3", label);
-      heading.className = "range-group-heading";
-      const options = element("optgroup");
-      options.label = label;
-      list.append(heading);
-      select.append(options);
+      const sidebarHeading = element("h3", label);
+      sidebarHeading.className = "range-group-heading";
+      list.append(sidebarHeading);
       group.forEach((range) => {
         const link = element("a");
         link.href = `#${range.id}`;
@@ -358,11 +364,88 @@
         link.append(element("span", String(range.products.length)));
         list.append(link);
         rangeButtons.set(range.id, link);
-        const option = element("option", rangeDisplayName(range));
-        option.value = range.id;
-        options.append(option);
+      });
+      const clients = [...companies].filter(([, catalogues]) => (
+        catalogues.some((range) => range.source === "production") ? "production" : catalogues[0].source
+      ) === source);
+      if (!clients.length) continue;
+      const menuGroup = element("div");
+      menuGroup.className = "client-menu-group";
+      menuGroup.append(element("h3", label));
+      clientMenuOptions.append(menuGroup);
+      clients.forEach(([company, catalogues]) => {
+        const [range] = catalogues;
+        const name = overviewClientName(company);
+        const grouped = catalogues.length > 1;
+        const item = clientMenuRow(grouped ? "button" : "a", name, grouped
+          ? `${catalogues.length} catalogues`
+          : range.label === company ? countProducts(range) : range.label);
+        const image = element("span");
+        image.className = "client-menu-logo";
+        const logo = logos.get(company);
+        const imagePath = logo ? `assets/client-logo-${logo}.webp` : range.products.find((product) => product.photos.length)?.photos[0];
+        if (imagePath) image.append(photoImage(imagePath, "", true));
+        item.prepend(image);
+        if (grouped) {
+          item.type = "button";
+          item.setAttribute("aria-controls", clientMenuCatalogues.id);
+          item.addEventListener("click", () => openClientMenuCatalogues(name, catalogues, item));
+        } else {
+          item.href = `#${range.id}`;
+        }
+        menuGroup.append(item);
+        catalogues.forEach(({ id }) => clientMenuRows.set(id, item));
       });
     }
+  }
+
+  function countProducts(range) {
+    const { length } = range.products;
+    return `${length} ${length === 1 ? "product" : "products"}`;
+  }
+
+  function clientMenuRow(tag, title, subtitle) {
+    const item = element(tag);
+    item.className = "client-menu-link";
+    const copy = element("span");
+    copy.className = "client-menu-copy";
+    copy.append(element("strong", title), element("small", subtitle));
+    const arrow = element("span");
+    arrow.className = "client-menu-arrow";
+    arrow.setAttribute("aria-hidden", "true");
+    item.append(copy, arrow);
+    return item;
+  }
+
+  function focusClientMenuRow(list) {
+    const item = list.querySelector("[aria-current]") || list.querySelector(".client-menu-link");
+    item?.focus({ preventScroll: true });
+    item?.scrollIntoView({ block: "nearest" });
+  }
+
+  function openClientMenuCatalogues(company, catalogues, trigger) {
+    clientMenuParent = trigger;
+    const selected = selectedCatalogue();
+    clientMenuCatalogues.replaceChildren(...catalogues.map((range) => {
+      const item = clientMenuRow("a", range.label, countProducts(range));
+      item.href = `#${range.id}`;
+      if (range.id === selected) item.setAttribute("aria-current", overview.hidden ? "location" : "true");
+      return item;
+    }));
+    clientMenuTitle.textContent = `${company} catalogues`;
+    clientMenuOptions.hidden = true;
+    clientMenuBack.hidden = false;
+    clientMenuCatalogues.hidden = false;
+    focusClientMenuRow(clientMenuCatalogues);
+  }
+
+  function showClientMenuOptions(restoreFocus = false) {
+    clientMenuTitle.textContent = "Client catalogues";
+    clientMenuCatalogues.hidden = true;
+    clientMenuBack.hidden = true;
+    clientMenuOptions.hidden = false;
+    if (restoreFocus) clientMenuParent?.focus();
+    clientMenuParent = null;
   }
 
   function chooseClientCatalogue(company, catalogues) {
@@ -392,12 +475,7 @@
     return overviewBrandNames.get(company) ?? company.toLowerCase().replace(/(^|\s)\p{L}/gu, (first) => first.toUpperCase());
   }
 
-  function renderClientOverview(logos) {
-    const companies = new Map();
-    for (const range of ranges) {
-      if (!companies.has(range.client)) companies.set(range.client, []);
-      companies.get(range.client).push(range);
-    }
+  function renderClientOverview(companies, logos) {
     const clients = [...companies.entries()].sort(([a], [b]) => order.compare(overviewClientName(a), overviewClientName(b)));
     const cards = clients.map(([company, catalogues]) => {
       const name = overviewClientName(company);
@@ -600,14 +678,18 @@
     focusTarget.focus();
   });
   sidebarToggle.addEventListener("click", () => {
-    settings.sidebarCollapsed = !settings.sidebarCollapsed;
+    settings.sidebarCollapsed = settings.sidebarCollapsed === false;
     syncSidebar();
     saveSettings();
   });
   desktop.addEventListener("change", () => {
     syncSidebar();
-    if (location.hash === overviewHash) onRangeHash();
+    setMobileSearch(searchPanel.hasAttribute("data-mobile-open"));
   });
+  if (profileActions) {
+    mobileAccount.append(profileActions);
+    mobileAccount.hidden = false;
+  }
   syncSidebar();
   function jumpTo(target) {
     target.focus({ preventScroll: true });
@@ -632,7 +714,7 @@
   });
   mobileSearch.addEventListener("click", () => {
     mobileAccount.open = false;
-    const open = !overview.hidden || !searchPanel.hasAttribute("data-mobile-open");
+    const open = desktop.matches || !overview.hidden || !searchPanel.hasAttribute("data-mobile-open");
     setMobileSearch(open);
     if (open) catalogueShortcut(search);
   });
@@ -654,7 +736,41 @@
     event.preventDefault();
     id("main").focus();
   });
-  select.addEventListener("change", () => { location.hash = select.value; });
+  function setClientMenuOpen(open) {
+    clientMenuToggle.setAttribute("aria-expanded", String(open));
+    if (open) {
+      mobileAccount.open = false;
+      showClientMenuOptions();
+      focusClientMenuRow(clientMenuOptions);
+    }
+  }
+  function closeClientMenu() {
+    if (clientMenu.open) clientMenu.close();
+    else if (nativeClientPopover && clientMenu.matches(":popover-open")) clientMenu.hidePopover();
+  }
+  if (nativeClientPopover) {
+    clientMenu.addEventListener("toggle", (event) => setClientMenuOpen(event.newState === "open"));
+  } else {
+    clientMenuToggle.addEventListener("click", () => {
+      clientMenu.showModal();
+      setClientMenuOpen(true);
+    });
+    clientMenu.addEventListener("close", () => setClientMenuOpen(false));
+    clientMenu.addEventListener("click", (event) => {
+      const bounds = clientMenu.getBoundingClientRect();
+      if (event.target === clientMenu && (event.clientX < bounds.left || event.clientX > bounds.right ||
+        event.clientY < bounds.top || event.clientY > bounds.bottom)) clientMenu.close();
+    });
+  }
+  clientMenuBack.addEventListener("click", () => showClientMenuOptions(true));
+  clientMenu.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || clientMenuCatalogues.hidden) return;
+    event.preventDefault();
+    showClientMenuOptions(true);
+  });
+  clientMenu.addEventListener("click", (event) => {
+    if (event.target.closest("a")) closeClientMenu();
+  });
   window.addEventListener("hashchange", onRangeHash);
   window.addEventListener("pagehide", saveSettings);
   id("close").addEventListener("click", closeProduct);
@@ -729,15 +845,21 @@
       productionDay = day.format(new Date(date));
       const priority = (range) => rangePriority.get(range.id) ?? rangePriority.size;
       ranges = clients.sort((a, b) => priority(a) - priority(b));
-      renderRangeOptions();
-      renderClientOverview(new Map(Object.entries(clientLogos)));
+      const logos = new Map(Object.entries(clientLogos));
+      const companies = new Map();
+      for (const range of ranges) {
+        if (!companies.has(range.client)) companies.set(range.client, []);
+        companies.get(range.client).push(range);
+      }
+      renderRangeOptions(companies, logos);
+      renderClientOverview(companies, logos);
       onRangeHash();
       if (active) {
         id("catalogue-controls").hidden = false;
         search.disabled = false;
         mobileSearch.disabled = false;
         overviewTab.disabled = false;
-        select.disabled = false;
+        clientMenuToggle.disabled = false;
         if (restoreFocus) search.focus();
       } else {
         id("range-title").textContent = "Client catalogues";

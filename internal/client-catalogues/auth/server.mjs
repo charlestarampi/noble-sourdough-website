@@ -44,7 +44,6 @@ const actionCss = `
 .profile-actions { display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px; }
 .profile-actions a, .profile-actions button { color:#0d3d99; font:inherit; font-weight:700; }
 .profile-actions button { border:1px solid currentColor; border-radius:99px; padding:5px 12px; background:transparent; cursor:pointer; }
-.page-header:has(.profile-actions) { gap:8px 16px; flex-wrap:wrap; }
 `;
 
 function send(response, status, content, type = "text/plain; charset=utf-8") {
