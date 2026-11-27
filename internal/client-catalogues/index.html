@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Noble Sourdough Product Profile</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+  <link rel="stylesheet" href="site.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to catalogue</a>
+  <div class="workspace">
+    <aside class="sidebar">
+      <div class="brand"><img src="assets/logo.webp" alt="Noble Sourdough" width="163" height="65"></div>
+      <nav id="catalogue-nav" aria-label="Client ranges" class="range-nav">
+        <h2>Client catalogues</h2>
+        <div id="client-list" class="range-list"></div>
+        <label class="mobile-ranges">Client
+          <select id="range-select" disabled><option>Loading clients…</option></select>
+        </label>
+      </nav>
+      <div class="sidebar-foot">Noble Sourdough <span>Internal preview</span></div>
+    </aside>
+
+    <main id="main" tabindex="-1">
+      <header class="page-header">
+        <div class="page-header-title">
+          <button id="sidebar-toggle" class="button sidebar-toggle" type="button" aria-expanded="true" aria-controls="catalogue-nav" aria-label="Toggle client catalogue sidebar" title="Toggle client catalogue sidebar">
+            <span class="sidebar-icon" aria-hidden="true"></span>
+          </button>
+          <p>Product Profile</p>
+        </div>
+        <span>Local preview</span>
+      </header>
+      <div class="content">
+        <section class="hero" aria-labelledby="range-title">
+          <div class="hero-copy">
+            <p class="eyebrow" id="client-label">Client catalogue</p>
+            <h1 id="range-title">Loading catalogue</h1>
+            <p id="catalogue-source" class="hero-caption"></p>
+          </div>
+          <dl class="hero-stats">
+            <div><dt>Products</dt><dd id="total">—</dd></div>
+            <div><dt>With source photos</dt><dd id="photos-total">—</dd></div>
+          </dl>
+        </section>
+        <section class="products" aria-labelledby="products-title">
+          <div class="section-head">
+            <h2 id="products-title">Products</h2>
+            <label class="search">
+              <span aria-hidden="true" class="search-icon"></span>
+              <span class="sr-only">Search products by name or SKU</span>
+              <input id="search" type="search" placeholder="Search by name or SKU" disabled>
+            </label>
+          </div>
+          <div id="catalogue-controls" class="toolbar" hidden>
+            <div class="filters" role="group" aria-label="Filter products">
+              <button type="button" data-filter="all" aria-pressed="true">All products</button>
+              <button id="missing-skus" type="button" data-filter="missing-sku" aria-pressed="false">Missing SKUs</button>
+              <button type="button" data-filter="with" aria-pressed="false">With photos</button>
+              <button type="button" data-filter="review" aria-pressed="false">Needs review</button>
+            </div>
+            <div class="view-tools">
+              <label class="sort-control">
+                <span class="sr-only">Sort products</span>
+                <select id="sort-products">
+                  <option value="source">Catalogue order</option>
+                  <option value="name-asc">Name A–Z</option>
+                  <option value="name-desc">Name Z–A</option>
+                  <option value="customer-sku">Customer SKU</option>
+                </select>
+              </label>
+              <div class="view-options" role="group" aria-label="Product layout">
+                <button type="button" data-view="cards" aria-pressed="true">Cards</button>
+                <button type="button" data-view="table" aria-pressed="false">Table</button>
+              </div>
+            </div>
+          </div>
+          <div class="results-bar">
+            <p id="results" role="status"></p>
+            <button id="reset-products" class="button reset-products" type="button" hidden>Reset controls</button>
+          </div>
+          <div id="product-results" aria-busy="true">
+            <div id="catalogue-loading" class="grid loading-grid" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div id="grid" class="grid" hidden></div>
+            <div id="table-view" class="table-view" hidden>
+              <table class="product-table">
+                <caption class="sr-only">Products in the selected client catalogue</caption>
+                <thead><tr><th scope="col">Product</th><th scope="col">Customer SKU</th><th scope="col">Internal SKU</th><th scope="col">Weight</th><th scope="col">Size</th></tr></thead>
+                <tbody id="product-rows"></tbody>
+              </table>
+            </div>
+            <div id="empty" class="empty" hidden><p>No products match your search or filters.</p></div>
+            <div id="error" class="empty" hidden>
+              <p role="alert">The catalogue couldn’t load. Check your connection and try again.</p>
+              <button id="retry-catalogue" class="button" type="button">Retry</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <template id="product-card">
+    <article class="card">
+      <button class="card-button" type="button" aria-haspopup="dialog">
+        <span class="card-media"><span class="placeholder">Photo pending</span></span>
+        <span class="card-body">
+          <span class="card-title"></span>
+          <span class="card-specs"></span>
+        </span>
+      </button>
+    </article>
+  </template>
+
+  <dialog id="product-detail" aria-labelledby="detail-title">
+    <div class="dialog-header">
+      <p id="detail-range" class="eyebrow"></p>
+      <button id="close" type="button" class="round-button" aria-label="Close product details">×</button>
+    </div>
+    <div id="detail-scroll" class="detail-scroll" tabindex="0" role="region" aria-labelledby="detail-title">
+      <div class="detail-layout">
+        <div class="detail-gallery">
+          <div id="detail-media" class="detail-media"></div>
+          <div id="photo-controls" class="photo-controls" role="group" aria-label="Browse photos" hidden>
+            <button id="previous-photo" class="round-button" type="button" aria-label="Previous photo">‹</button>
+            <span id="photo-index" aria-live="polite"></span>
+            <button id="next-photo" class="round-button" type="button" aria-label="Next photo">›</button>
+          </div>
+        </div>
+        <div class="detail-copy">
+          <div class="detail-heading">
+            <p class="eyebrow"><span id="detail-bake-label">Bake status · </span><span id="detail-bake-status"></span></p>
+            <h2 id="detail-title"></h2>
+          </div>
+          <p class="detail-description"><span id="detail-description-label">Description: </span><span id="detail-description"></span></p>
+          <dl class="product-details">
+            <div><dt>Weight</dt><dd id="detail-weight"></dd></div>
+            <div><dt id="dimension-label">Size</dt><dd id="dimension-value"></dd></div>
+            <div><dt id="detail-code-label">Product code (internal SKU)</dt><dd id="internal-sku"></dd></div>
+            <div><dt>Allergens</dt><dd id="detail-allergens"></dd></div>
+            <div class="detail-customer-sku"><dt>Customer SKU</dt><dd><span id="client-sku"></span><button id="copy-customer-sku" type="button" aria-label="Copy Customer SKU" hidden>Copy</button></dd></div>
+          </dl>
+          <p id="sku-note" class="sku-note" hidden></p>
+        </div>
+      </div>
+    </div>
+    <nav id="item-controls" class="item-controls" aria-label="Browse products" hidden>
+      <button id="previous-item" type="button" aria-label="Previous item">←&nbsp; Previous</button>
+      <span role="status"><span class="sr-only">Item </span><span id="item-index"></span></span>
+      <button id="next-item" type="button" aria-label="Next item">Next &nbsp;→</button>
+    </nav>
+    <p id="item-feedback" class="item-feedback" role="status" aria-atomic="true"></p>
+  </dialog>
+</body>
+</html>
